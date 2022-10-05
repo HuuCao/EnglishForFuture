@@ -52,8 +52,8 @@
             <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> info@mydomain.com</a> 
           </div>
           <div class="col-lg-3 text-right">
-            <a href="login.html" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
-            <a href="register.html" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Register</a>
+            <a href="{{'login'}}" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
+            <a href="{{'register'}}" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Register</a>
           </div>
         </div>
       </div>
@@ -63,7 +63,7 @@
       <div class="container">
         <div class="d-flex align-items-center">
           <div class="site-logo">
-            <a href="index.html" class="d-block">
+            <a href="" class="d-block">
               <img src="{{asset('public/home/images/logo.jpg')}}" alt="Image" class="img-fluid">
             </a>
           </div>
@@ -71,7 +71,7 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li>
-                  <a href="index.html" class="nav-link text-left">Home</a>
+                  <a href="" class="nav-link text-left">Home</a>
                 </li>
                 <li class="has-children">
                   <a href="about.html" class="nav-link text-left">About Us</a>
@@ -124,7 +124,7 @@
 
     <div class="custom-breadcrumns border-bottom">
       <div class="container">
-        <a href="index.html">Home</a>
+        <a href="">Home</a>
         <span class="mx-3 icon-keyboard_arrow_right"></span>
         <span class="current">Login</span>
       </div>
@@ -156,13 +156,13 @@
                     </div>
                     <div class="row m-4">
                       <div class="col-md-12 form-group">
-                        <a href="#" class="form-control form-control-lg d-flex justify-content-center" style="background-color: #3B5998; color: white;">
+                        <a href="{{url('/login/facebook')}}" class="form-control form-control-lg d-flex justify-content-center" style="background-color: #3B5998; color: white;">
                           <div><span class="icon-facebook"> </span></div>
                         </a>
                       </div>
                       <div class="col-md-12 form-group">
                         <a href="#" class="form-control form-control-lg d-flex justify-content-center" style="background-color: #dd4b39; color: white;">
-                          <div><span class="icon-google"> </span></div>
+                          <div><span class="icon-google"></span></div>
                         </a>
                       </div>
                     </div>

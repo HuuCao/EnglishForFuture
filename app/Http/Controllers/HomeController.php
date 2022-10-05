@@ -8,34 +8,34 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function getHome()
+    {
         return view('home.index');
     }
 
-    public function login(){
+    public function login()
+    {
         if(Session::get('role')!=null){
             return redirect('admin');
         }
         return view('home.login');
     }
 
-    public function register(){
+    public function register()
+    {
         return view('home.register');
     }
 
     public function logout()
     {
-        
         Session::put("role", "");
-
-        Session::put("admin_id", "");
-        Session::put("shipper", "");
         Session::put("username", "");
-        Session::put("id_shop_user", "");
+
         return redirect("login");
     }
 
-    public function postRegister(Request $request){
+    public function postRegister(Request $request)
+    {
         Session::put('username', $request->username);
         Session::put('email', $request->email);
         $user = new User;
@@ -66,15 +66,8 @@ class HomeController extends Controller
 
         return redirect('login');
     }
-
-    public function admin(){
-        if (Session::get('role') == null) {
-            return redirect('login');
-        }
-        return view('admin.admin');
-    }
-
-    public function postLogin(Request $request){
+    public function postLogin(Request $request)
+    {
         $user = User::where('username', $request->username)->where('password', MD5($request->pword))->first();
         if ($user != null) {
             if ($user->role == 1) {
@@ -82,7 +75,8 @@ class HomeController extends Controller
                 return redirect('admin');
             } else if ($user->role == 2) {
                 Session::put('username',$user->username);
-                return redirect('/');
+                Session::put('email',$user->email);
+                return redirect("/");
             }
              else {
                 return redirect('login');
@@ -94,8 +88,9 @@ class HomeController extends Controller
                     Session::put('role',$user->role);
                     return redirect('admin');
                 } else if ($user->role == 2) {
+                    Session::put('email',$user->email);
                     Session::put('username',$user->username);
-                    return redirect('/');
+                    return redirect("/");
                 }
                  else {
                     return redirect('login');
@@ -105,9 +100,31 @@ class HomeController extends Controller
             }
         }
     }
-    public function course(){
+
+    public function course()
+    {
         $course = DB::table('course')->get();
         return view('home.course',compact('course'));
     }
+
+    // public function admin()
+    // {
+    //     if (Session::get('role') == null)
+    //     {
+    //         return redirect('login');
+    //     }
+    //     return view('admin.admin');
+    // }
+
+    // public function getAllUser()
+    // {
+    //     if (Session::get('role') == null)
+    //     {
+    //         return redirect('login');
+    //     }
+    //     return view('admin.user');
+    // }
+
+
 }
 

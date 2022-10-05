@@ -54,8 +54,8 @@
           <div class="col-lg-3 text-right">
             @if(Session::get('username')==null)
 
-            <a href="login.html" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
-            <a href="register.html" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Register</a>
+            <a href="{{asset('login')}}" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
+            <a href="register" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Register</a>
             
                 
             @else
@@ -71,7 +71,7 @@
       <div class="container">
         <div class="d-flex align-items-center">
           <div class="site-logo">
-            <a href="index.html" class="d-block">
+            <a href="" class="d-block">
               <img src="{{asset('public/home/images/logo.jpg')}}" alt="Image" class="img-fluid">
             </a>
           </div>
@@ -79,7 +79,7 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li class="active">
-                  <a href="index.html" class="nav-link text-left">Home</a>
+                  <a href="" class="nav-link text-left">Home</a>
                 </li>
                 <li class="has-children">
                   <a href="about.html" class="nav-link text-left">About Us</a>
