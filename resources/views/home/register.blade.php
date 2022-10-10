@@ -148,6 +148,61 @@
                             <input type="email" id="email" name="email" class="form-control form-control-lg" value="{{Session::get('email')}}">
                         </div>
                         <div class="col-md-12 form-group">
+                            <label for="first_name">First Name</label>
+                            <input type="text" id="first_name" name="first_name" class="form-control form-control-lg" value="{{Session::get('first_name')}}">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" id="last_name" name="last_name" class="form-control form-control-lg" value="{{Session::get('last_name')}}">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="birthday">Birthday</label>
+                            <input type="date" id="birthday" name="birthday" class="form-control form-control-lg" value="{{Session::get('birthday')}}">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" class="form-control form-control-lg" value="{{Session::get('phone')}}">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="email">Giới tính</label>
+                            <div style="display: flex; margin-top: 10px">
+                              <div style="display: flex; align-items: center" class="form-check">
+                                  <input style="width: 20px; height: 20px" class="form-check-input" type="radio" name="sex" value="0"
+                                         id="display"checked />
+                                  <label style="
+                                   font-family: 'Montserrat';
+                                   font-style: normal;
+                                   font-weight: 400;
+                                   font-size: 15px;
+                                   color: #666666;
+                                   margin-left: 10px;
+                                   margin-top: 5px;
+                                   " class="form-check-label" for="flexRadioDefault1">
+                                      Nam
+                                  </label>
+                              </div>
+                              <div style="
+                                display: flex;
+                                align-items: center;
+                                margin-left: 30px;
+                                " class="form-check">
+                                  <input style="width: 20px; height: 20px" class="form-check-input" type="radio" value="1" name="sex"
+                                         id="display1"  />
+                                  <label style="
+                                   font-family: 'Montserrat';
+                                   font-style: normal;
+                                   font-weight: 400;
+                                   font-size: 15px;
+                                   color: #666666;
+                                   margin-left: 10px;
+                                   margin-top: 5px;
+                                   " class="form-check-label" for="flexRadioDefault2">
+                                      Nữ
+                                  </label>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12 form-group">
                             <label for="pword">Password</label>
                             <input type="password" id="pword" name="pword" class="form-control form-control-lg">
                         </div>

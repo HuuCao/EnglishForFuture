@@ -19,7 +19,7 @@ use App\Http\Controllers\SocialController;
 
 // Root
 // Route::get('/', [HomeController::class, 'index']);
-Route::get('/', [HomeController::class, 'getHome']);
+Route::get('/home', [HomeController::class, 'getHome']);
 
 
 // Authentication
@@ -42,5 +42,21 @@ Route::group(['prefix' => '/admin'], function () {
 
     Route::group(['prefix' => '/user'], function () {
         Route::get('/', [AdminController::class, 'getAllUser']);
-    });   
+        Route::get('/add', [AdminController::class, 'addUser']);
+        Route::post('/add', [AdminController::class, 'postAddUser']);
+        Route::get('/edit/{id}', [AdminController::class, 'editUser']);
+        Route::post('/edit/{id}', [AdminController::class, 'postEditUser']);
+        Route::get('/delete/{id}', [AdminController::class, 'deleteUser']);
+    }); 
+
+    Route::group(['prefix' => '/course'], function () {
+        Route::get('/', [AdminController::class, 'getAllCourse']);
+        Route::get('/add', [AdminController::class, 'addCourse']);
+        Route::post('/add', [AdminController::class, 'postAddCourse']);
+        Route::get('/edit/{id}', [AdminController::class, 'editCourse']);
+        Route::post('/edit/{id}', [AdminController::class, 'postEditCourse']);
+        Route::get('/delete/{id}', [AdminController::class, 'deleteCourse']);
+    }); 
+
+    Route::get('/userget', [AdminController::class, 'getAll']); 
 });

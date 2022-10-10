@@ -348,9 +348,9 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="{{asset('admin/user')}}">
+							<a href="{{asset('admin/course')}}">
 								<i class="fas fa-table"></i>
-								<p>Bài kiểm tra</p>
+								<p>Khóa học</p>
 							</a>
 						</li>
 					</ul>

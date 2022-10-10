@@ -19,7 +19,7 @@ class Social extends Model
       protected $table = 'tbl_social';
 
       public function login(){
-            return $this->belongsTo('App\Login', 'users');
+            return $this->belongsTo('App\Login', 'tbl_user');
       }
 
 }

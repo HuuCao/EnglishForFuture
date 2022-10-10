@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User_Course extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -23,7 +23,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $table = "tbl_user";
+    protected $table = "tbl_user_course";
     protected $primaryKey = 'id';
     
     protected $hidden = [
@@ -40,9 +40,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function user_course()
+    public function users()
     {
-        return $this->hasMany('App\Models\User_Course', 'id_user', 'id');
+        return $this->belongsTo('App\Models\User', 'id_user', 'id');
     }
 
 }

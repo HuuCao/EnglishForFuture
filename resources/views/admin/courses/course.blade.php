@@ -348,9 +348,9 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="{{asset('admin/user')}}">
+							<a href="{{asset('admin/course')}}">
 								<i class="fa fa-table"></i>
-								<p>Bài kiểm tra</p>
+								<p>Khóa học</p>
 							</a>
 						</li>
 					</ul>
@@ -363,11 +363,21 @@
 					<div class="page-header">
 						<h4 class="page-title">Danh sách người dùng</h4>
 					</div>
+					
+					@if ($message = Session::get('success'))
+						<div class="alert alert-success alert-block">
+							<button type="button" class="close" data-dismiss="alert">×</button>	
+								<strong>{{ $message }}</strong>
+						</div>
+					@endif
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">{{Session::get('soluong')}} Người dùng</h4>
+									<h4 class="card-title">{{Session::get('soluong')}} Khóa học</h4>
+								</div>
+								<div class="button-add">
+									<a href="{{asset('admin/course/add')}}" type="button" class="btn btn-success pull-right mr-3 mt-3">Thêm mới</a>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
@@ -375,11 +385,12 @@
 											<thead>
 												<tr>
 													<th>STT</th>
-													<th>Username</th>
-													<th>Email</th>
-													<th>Role</th>
-													<th>Ngày tạo</th>
-													<th>Ngày cập nhật</th>
+													<th>Tên</th>
+													<th>Tiêu đề</th>
+													<th>Mô tả</th>
+													<th>Giá</th>
+													<th>Hình ảnh</th>
+													<th>trạng thái</th>
 													<th>Action</th>
 												</tr>
 											</thead>
@@ -387,29 +398,33 @@
                                                 <?php
                                                     $i = 0;
                                                 ?>
-                                                @foreach ($data_user as $user)
+                                                @foreach ($data_course as $course)
                                                     <?php $i++ ?>
                                                     <tr>
                                                         <td>{{$i}}</td>
-                                                        <td>{{$user->username}}</td>
-                                                        <td>{{$user->email}}</td>
+                                                        <td>{{$course->caption}}</td>
+                                                        <td>{{$course->title}}</td>
+                                                        <td>{{$course->description}}</td>
+														<td>{{$course->price}}</td>
+														<td>{{$course->image}}</td>
                                                         <td>
-                                                            @if($user->role==1)
-                                                                {{$user->role = "Admin"}}
+                                                            @if($course->status==1)
+                                                                {{$course->status = "On"}}
                                                             @else
-                                                                {{$user->role = "Học viên"}}
+                                                                {{$course->status = "Off"}}
                                                             @endif
                                                         </td>
-                                                        <td>{{$user->created_at}}</td>
-                                                        <td>{{$user->updated_at}}</td>
                                                         <td>
                                                             <div class="form-button-action">
-                                                                <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+																<a type="submit" data-toggle="tooltip" href="{{asset('admin/course/edit/'.$course->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="List Lesson">
+                                                                    <i class="fa fa-info"></i>
+																</a>
+                                                                <a type="submit" data-toggle="tooltip" href="{{asset('admin/course/edit/'.$course->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Course">
                                                                     <i class="fa fa-edit"></i>
-                                                                </button>
-                                                                <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+																</a>
+                                                                <a type="submit" data-toggle="tooltip" href="{{asset('admin/course/delete/'.$course->id)}}" name="delete" value="Delete" title="" class="btn btn-link btn-danger" data-original-title="Remove">
                                                                     <i class="fa fa-times"></i>
-                                                                </button>
+																</a>
                                                             </div>
                                                         </td>
                                                     </tr>

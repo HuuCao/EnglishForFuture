@@ -38,14 +38,19 @@ class HomeController extends Controller
     {
         Session::put('username', $request->username);
         Session::put('email', $request->email);
+        Session::put('first_name', $request->first_name);
+        Session::put('last_name', $request->last_name);
+        Session::put('brithday', $request->brithday);
+        Session::put('sex', $request->sex);
+        Session::put('phone', $request->phone);
         $user = new User;
 
-        $dataEmail=User::where('email',$request->email)->first();
+        $dataEmail=User::where('email',$request->email)->where('is_active', 1)->first();
         if($dataEmail!=null){
             return redirect('register')->with('errthongbao','Email đã tồn tại');
         }
 
-        $dataUsername=User::where('username',$request->username)->first();
+        $dataUsername=User::where('username',$request->username)->where('is_active', 1)->first();
         if($dataUsername!=null){
             return redirect('register')->with('errthongbao','Username đã tồn tại');
         }
@@ -60,15 +65,21 @@ class HomeController extends Controller
         } else {
             return redirect('register')->with('errthongbao','Nhập lại mật khẩu không đúng!');
         }
+        // dd($request);
         $user->role=2;
         $user->email=$request->email;
+        $user->first_name=$request->first_name;
+        $user->last_name=$request->last_name;
+        $user->birthday=$request->birthday;
+        $user->sex=$request->sex;
+        $user->phone=$request->phone;
         $user->save();
 
         return redirect('login');
     }
     public function postLogin(Request $request)
     {
-        $user = User::where('username', $request->username)->where('password', MD5($request->pword))->first();
+        $user = User::where('username', $request->username)->where('password', MD5($request->pword))->where('is_active', 1)->first();
         if ($user != null) {
             if ($user->role == 1) {
                 Session::put('role',$user->role);
@@ -82,7 +93,7 @@ class HomeController extends Controller
                 return redirect('login');
             }
         } else {
-            $user = User::where('email', $request->username)->where('password', MD5($request->pword))->first();
+            $user = User::where('email', $request->username)->where('password', MD5($request->pword))->where('is_active', 1)->first();
             if ($user != null) {
                 if ($user->role == 1) {
                     Session::put('role',$user->role);
@@ -106,24 +117,6 @@ class HomeController extends Controller
         $course = DB::table('course')->get();
         return view('home.course',compact('course'));
     }
-
-    // public function admin()
-    // {
-    //     if (Session::get('role') == null)
-    //     {
-    //         return redirect('login');
-    //     }
-    //     return view('admin.admin');
-    // }
-
-    // public function getAllUser()
-    // {
-    //     if (Session::get('role') == null)
-    //     {
-    //         return redirect('login');
-    //     }
-    //     return view('admin.user');
-    // }
 
 
 }
