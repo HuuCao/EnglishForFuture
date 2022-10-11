@@ -343,14 +343,26 @@
 						</li>
 						<li class="nav-item">
 							<a href="{{asset('admin/user')}}">
-								<i class="fas fa-table"></i>
+								<i class="fa fa-table"></i>
 								<p>Người dùng</p>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="{{asset('admin/course')}}">
-								<i class="fas fa-table"></i>
+								<i class="fa fa-table"></i>
 								<p>Khóa học</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{asset('admin/lesson')}}">
+								<i class="fa fa-table"></i>
+								<p>Bài giảng</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{asset('admin/blog')}}">
+								<i class="fa fa-table"></i>
+								<p>Blog</p>
 							</a>
 						</li>
 					</ul>

@@ -353,6 +353,18 @@
 								<p>Khóa học</p>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="{{asset('admin/lesson')}}">
+								<i class="fa fa-table"></i>
+								<p>Bài giảng</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{asset('admin/blog')}}">
+								<i class="fa fa-table"></i>
+								<p>Blog</p>
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>

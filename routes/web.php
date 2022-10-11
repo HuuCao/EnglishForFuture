@@ -58,5 +58,23 @@ Route::group(['prefix' => '/admin'], function () {
         Route::get('/delete/{id}', [AdminController::class, 'deleteCourse']);
     }); 
 
+    Route::group(['prefix' => '/lesson'], function () {
+        Route::get('/', [AdminController::class, 'getAllLesson']);
+        Route::get('/add', [AdminController::class, 'addLesson']);
+        Route::post('/add', [AdminController::class, 'postAddLesson']);
+        Route::get('/edit/{id}', [AdminController::class, 'editLesson']);
+        Route::post('/edit/{id}', [AdminController::class, 'postEditLesson']);
+        Route::get('/delete/{id}', [AdminController::class, 'deleteLesson']);
+    }); 
+    
+    Route::group(['prefix' => '/blog'], function () {
+        Route::get('/', [AdminController::class, 'getAllBlog']);
+        Route::get('/add', [AdminController::class, 'addBlog']);
+        Route::post('/add', [AdminController::class, 'postAddBlog']);
+        Route::get('/edit/{id}', [AdminController::class, 'editBlog']);
+        Route::post('/edit/{id}', [AdminController::class, 'postEditBlog']);
+        Route::get('/delete/{id}', [AdminController::class, 'deleteBlog']);
+    }); 
+
     Route::get('/userget', [AdminController::class, 'getAll']); 
 });

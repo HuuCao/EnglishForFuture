@@ -353,6 +353,18 @@
 								<p>Khóa học</p>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="{{asset('admin/lesson')}}">
+								<i class="fa fa-table"></i>
+								<p>Bài giảng</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{asset('admin/blog')}}">
+								<i class="fa fa-table"></i>
+								<p>Blog</p>
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -377,7 +389,7 @@
 									<h4 class="card-title">{{Session::get('soluong')}} Khóa học</h4>
 								</div>
 								<div class="button-add">
-									<a href="{{asset('admin/course/add')}}" type="button" class="btn btn-success pull-right mr-3 mt-3">Thêm mới</a>
+									<a href="{{asset('admin/lesson/add')}}" type="button" class="btn btn-success pull-right mr-3 mt-3">Thêm mới</a>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
@@ -386,11 +398,10 @@
 												<tr>
 													<th>STT</th>
 													<th>Tên</th>
-													<th>Tiêu đề</th>
-													<th>Mô tả</th>
-													<th>Giá</th>
 													<th>Hình ảnh</th>
-													<th>trạng thái</th>
+													{{-- <th>Danh sách video</th>
+													<th>Danh sách bài thi</th> --}}
+													<th>Trạng thái</th>
 													<th>Action</th>
 												</tr>
 											</thead>
@@ -398,31 +409,30 @@
                                                 <?php
                                                     $i = 0;
                                                 ?>
-                                                @foreach ($data_course as $course)
+                                                @foreach ($data_lesson as $lesson)
                                                     <?php $i++ ?>
                                                     <tr>
                                                         <td>{{$i}}</td>
-                                                        <td>{{$course->caption}}</td>
-                                                        <td>{{$course->title}}</td>
-                                                        <td>{{$course->description}}</td>
-														<td>{{$course->price}}</td>
-														<td>{{$course->image}}</td>
+                                                        <td>{{$lesson->lesson_name}}</td>
+                                                        <td>{{$lesson->image}}</td>
+                                                        {{-- <td>{{$lesson->id_video}}</td>
+														<td>{{$lesson->id_exam}}</td> --}}
                                                         <td>
-                                                            @if($course->status==1)
-                                                                {{$course->status = "On"}}
+                                                            @if($lesson->status==1)
+                                                                {{$lesson->status = "On"}}
                                                             @else
-                                                                {{$course->status = "Off"}}
+                                                                {{$lesson->status = "Off"}}
                                                             @endif
                                                         </td>
                                                         <td>
                                                             <div class="form-button-action">
-																<a type="submit" data-toggle="tooltip" href="{{asset('admin/course/edit/'.$course->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="List Lesson">
+																<a type="submit" data-toggle="tooltip" href="{{asset('admin/lesson/edit/'.$lesson->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="List Lesson">
                                                                     <i class="fa fa-info"></i>
 																</a>
-                                                                <a type="submit" data-toggle="tooltip" href="{{asset('admin/course/edit/'.$course->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Course">
+                                                                <a type="submit" data-toggle="tooltip" href="{{asset('admin/lesson/edit/'.$lesson->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Course">
                                                                     <i class="fa fa-edit"></i>
 																</a>
-                                                                <a type="submit" data-toggle="tooltip" href="{{asset('admin/course/delete/'.$course->id)}}" name="delete" value="Delete" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                                                <a type="submit" data-toggle="tooltip" href="{{asset('admin/lesson/delete/'.$lesson->id)}}" name="delete" value="Delete" title="" class="btn btn-link btn-danger" data-original-title="Remove">
                                                                     <i class="fa fa-times"></i>
 																</a>
                                                             </div>

@@ -348,7 +348,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="{{asset('admin/course')}}">
+							<a href="{{asset('admin/user')}}">
 								<i class="fa fa-table"></i>
 								<p>Khóa học</p>
 							</a>
@@ -369,114 +369,48 @@
 				</div>
 			</div>
 		</div>
-		<div class="main-panel">
-			<div class="content">
-				<div class="page-inner">
-					<div class="page-header">
-						<h4 class="page-title">Danh sách người dùng</h4>
-					</div>
-					
-					@if ($message = Session::get('success'))
-						<div class="alert alert-success alert-block">
-							<button type="button" class="close" data-dismiss="alert">×</button>	
-								<strong>{{ $message }}</strong>
-						</div>
-					@endif
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">{{Session::get('soluong')}} Người dùng</h4>
-								</div>
-								<div class="button-add">
-									<a href="{{asset('admin/user/add')}}" type="button" class="btn btn-success pull-right mr-3 mt-3">Thêm mới</a>
-								</div>
-								<div class="card-body">
-									<div class="table-responsive">
-										<table id="basic-datatables" class="display table table-striped table-hover" >
-											<thead>
-												<tr>
-													<th>STT</th>
-													<th>First Name</th>
-													<th>Last Name</th>
-													<th>Email</th>
-													<th>Phone</th>
-													<th>Role</th>
-													<th>Ngày tạo</th>
-													<th>Action</th>
-												</tr>
-											</thead>
-											<tbody>
-                                                <?php
-                                                    $i = 0;
-                                                ?>
-                                                @foreach ($data_user as $user)
-                                                    <?php $i++ ?>
-                                                    <tr>
-                                                        <td>{{$i}}</td>
-                                                        <td>{{$user->first_name}}</td>
-                                                        <td>{{$user->last_name}}</td>
-                                                        <td>{{$user->email}}</td>
-                                                        <td>{{$user->phone}}</td>
-                                                        <td>
-                                                            @if($user->role==1)
-                                                                {{$user->role = "Admin"}}
-                                                            @elseif($user->role==2)
-                                                                {{$user->role = "Học viên"}}
-                                                            @else
-                                                                {{$user->role = "Giao viên"}}
-                                                            @endif
-                                                        </td>
-                                                        <td>{{$user->created_at}}</td>
-                                                        <td>
-                                                            <div class="form-button-action">
-                                                                <a type="submit" href="{{asset('admin/user/edit/'.$user->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
-                                                                    <i class="fa fa-edit"></i>
-																</a>
-                                                                <a type="submit" href="{{asset('admin/user/delete/'.$user->id)}}" name="delete" value="Delete" title="" class="btn btn-link btn-danger" data-original-title="Remove">
-                                                                    <i class="fa fa-times"></i>
-																</a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-											</tbody>
-										</table>
-									</div>
-								</div>
-                                {{-- {{ $data_user->links() }} --}}
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<footer class="footer">
-				<div class="container-fluid">
-					<nav class="pull-left">
-						<ul class="nav">
-							<li class="nav-item">
-								<a class="nav-link" href="https://www.themekita.com">
-									ThemeKita
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">
-									Help
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">
-									Licenses
-								</a>
-							</li>
-						</ul>
-					</nav>
-					<div class="copyright ml-auto">
-						2018, made with <i class="fa fa-heart heart text-danger"></i> by <a href="https://www.themekita.com">ThemeKita</a>
-					</div>				
-				</div>
-			</footer>
-		</div>
+        <div class="main-panel">
+            <div class="row justify-content-center">
+               <div class="col-md-12">
+                  <div class="card">
+                     <div class="card-header">Register</div>
+                     <div class="card-body">
+                        <form class="form-horizontal" method="post" action="#">
+                            @csrf
+                            <div class="form-group">
+                               <label for="blog_name" class="cols-sm-2 control-label">Tên Blog</label>
+                               <div class="cols-sm-10">
+                                  <div class="input-group">
+                                     <input type="text" class="form-control" name="blog_name" id="blog_name" placeholder="Nhập tên blog" value="{{$data_blog->blog_name}}"/>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="form-group">
+                               <label for="content" class="cols-sm-2 control-label">Nội dung</label>
+                               <div class="cols-sm-10">
+                                  <div class="input-group">
+                                     <input type="text" class="form-control" name="content" id="content" placeholder="Nhập nội dung" value="{{$data_blog->content}}"/>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="form-group">
+                               <label for="iamge" class="cols-sm-2 control-label">Hình ảnh</label>
+                               <div class="cols-sm-10">
+                                  <div class="input-group">
+                                     <input type="file" class="form-control" name="image" id="image" value="{{$data_blog->image}}"/>
+                                  </div>
+                               </div>
+                            </div>
+                           <div class="form-group pull-right">
+                               <a href="{{asset('admin/blog')}}" style="color: white" type="submit" class="btn btn-danger ">Hủy</a>
+                               <button style="color: white" type="submit" class="btn btn-primary ">Lưu</button>
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+        </div>
 		<!-- End Custom template -->
 	</div>
 	<!--   Core JS Files   -->

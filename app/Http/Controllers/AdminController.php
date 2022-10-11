@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Lesson;
+use App\Models\Blog;
 use App\Models\User_Course;
 use DB;
 use Session;
@@ -183,12 +185,25 @@ class AdminController extends Controller
         if($dataCaption!=null){
             return redirect('admin/course')->with('error','Caption đã tồn tại');
         }
+        
         $course->title=$request->title;
         $course->caption=$request->caption;
         $course->description=$request->description;
         $course->price=$request->price;
         $course->time=$request->time;
-        $course->image=$request->image;
+        dd($request->hasFile('image'));
+        if ($request->hasFile("image")) {
+            $upload_file = $request->file("image");
+            $file = $request->image->getClientOriginalName();
+            $day = date("Y-m-d");
+            $file_custom = $day . "_" . $file;
+            $file_custom2 =
+                "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+            $request->images->move("upload/", $file_custom);
+
+            Session::put('image',$file_custom2);
+        }
+        // dd($request->hasFile("image"));
         $course->save();
 
         return redirect('admin/course');
@@ -258,7 +273,7 @@ class AdminController extends Controller
     }
 
     // ==================================== //
-    //                 COURSE               //
+    //                 LESSON               //
     // ==================================== //
 
     public function getAllLesson()
@@ -268,9 +283,9 @@ class AdminController extends Controller
             return redirect('login');
         }
 
-        $data_course=Course::where('is_active', 1)->get();
-        Session::put('soluong',count(($data_course)));
-        return view('admin.courses.course', compact('data_course'));
+        $data_lesson=Lesson::where('is_active', 1)->get();
+        Session::put('soluong',count(($data_lesson)));
+        return view('admin.lessons.lesson', compact('data_lesson'));
     }
 
     public function addLesson()
@@ -279,31 +294,23 @@ class AdminController extends Controller
         {
             return redirect('login');
         }
-        return view("admin.courses.add");
+        return view("admin.lessons.add");
     }
     
     public function postAddLesson(Request $request)
     {
-        $course = new Course;
+        $lesson = new Lesson;
 
-        $dataTitle=Course::where('title',$request->title)->where('is_active', 1)->first();
-        if($dataTitle!=null){
-            return redirect('admin/course')->with('error','Tiêu đề đã tồn tại');
+        $data=Lesson::where('lesson_name',$request->lesson_name)->where('is_active', 1)->first();
+        if($data!=null){
+            return redirect('admin/lesson/add')->with('error','Tên bài giảng đã tồn tại');
         }
 
-        $dataCaption=Course::where('caption',$request->caption)->where('is_active', 1)->first();
-        if($dataCaption!=null){
-            return redirect('admin/course')->with('error','Caption đã tồn tại');
-        }
-        $course->title=$request->title;
-        $course->caption=$request->caption;
-        $course->description=$request->description;
-        $course->price=$request->price;
-        $course->time=$request->time;
-        $course->image=$request->image;
-        $course->save();
+        $lesson->lesson_name=$request->lesson_name;
+        $lesson->image=$request->image;
+        $lesson->save();
 
-        return redirect('admin/course');
+        return redirect('admin/lesson');
     }
 
     public function editLesson($id)
@@ -312,46 +319,31 @@ class AdminController extends Controller
         {
             return redirect('login');
         }
-            $data_course=Course::find($id);
+            $data_lesson=Lesson::find($id);
             // dd($data_user);
-            return view('admin.courses.edit',compact('data_course'));
+            return view('admin.lessons.edit',compact('data_lesson'));
     }
 
     public function postEditLesson(Request $request, $id)
     {
-        $title=$request->title;
-        $caption=$request->caption;
-        $description=$request->description;
-        $price=$request->price;
-        $time=$request->time;
+        $lesson_name=$request->lesson_name;
         $image=$request->image;
 
-        $check_data=Course::where('title',$title)
-            ->where('caption',$caption)
-            ->where('description',$description)
-            ->where('price',$price)
-            ->where('time',$time)
+        $check_data=Lesson::where('lesson_name',$lesson_name)
+            ->where('lesson_name',$lesson_name)
             ->where('id','<>',$id)
             ->first();
             // dd($check_data);
         if($check_data==null){
-            $course= Course::find($id);
-            $course->title=$request->title;
-            $course->caption=$request->caption;
-            $course->description=$request->description;
-            $course->price=$request->price;
-            $course->time=$request->time;
-            $course->image=$request->image;
-            $course->save();
-            return redirect('admin/course');
+            $lesson= Lesson::find($id);
+            $lesson->lesson_name=$request->lesson_name;
+            $lesson->image=$request->image;
+            $lesson->save();
+            return redirect('admin/lesson');
 
         }
         else{
-            Session::put('title',$title);
-            Session::put('caption',$caption);
-            Session::put('description',$description);
-            Session::put('price',$price);
-            Session::put('time',$time);
+            Session::put('lesson_name',$lesson_name);
             Session::put('image',$image);
             return back()->with('error','Thông tin không hợp lệ vui lòng kiểm tra lại');
         }
@@ -363,16 +355,109 @@ class AdminController extends Controller
         {
             return redirect('login');
         }
-        $data_course=Course::find($id);
-        $data_course->is_active = 0;
-        $data_course->save();
-        return redirect('admin/course')->with('success', 'User deleted successfully!');
+        $data_lesson=Lesson::find($id);
+        $data_lesson->is_active = 0;
+        $data_lesson->save();
+        return redirect('admin/lesson')->with('success', 'Lesson deleted successfully!');
     }
 
-    public function getAll()
+    // ==================================== //
+    //                 BLOG                 //
+    // ==================================== //
+
+    public function getAllBlog()
     {
-        $users = User::with('user_course')->get()->toArray();
-        echo '<pre>';
-        dd($users);
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
+
+        $data_blog=Blog::where('is_active', 1)->get();
+        Session::put('soluong',count(($data_blog)));
+        return view('admin.blogs.blog', compact('data_blog'));
     }
+
+    public function addBlog()
+    {
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
+        return view("admin.blogs.add");
+    }
+    
+    public function postAddBlog(Request $request)
+    {
+        $blog = new Blog;
+
+        $data=Blog::where('blog_name',$request->blog_name)->where('is_active', 1)->first();
+        if($data!=null){
+            return redirect('admin/blog/add')->with('error','Tên blog đã tồn tại');
+        }
+
+        $blog->blog_name=$request->blog_name;
+        $blog->content=$request->content;
+        $blog->image=$request->image;
+        $blog->save();
+
+        return redirect('admin/blog');
+    }
+
+    public function editBlog($id)
+    {
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
+            $data_blog=Blog::find($id);
+            // dd($data_user);
+            return view('admin.blogs.edit',compact('data_blog'));
+    }
+
+    public function postEditBlog(Request $request, $id)
+    {
+        $blog_name=$request->blog_name;
+        $content=$request->content;
+        $image=$request->image;
+
+        $check_data=Blog::where('blog_name',$blog_name)
+            ->where('blog_name',$blog_name)
+            ->where('id','<>',$id)
+            ->first();
+            // dd($check_data);
+        if($check_data==null){
+            $blog= Blog::find($id);
+            $blog->blog_name=$request->blog_name;
+            $blog->content=$request->content;
+            $blog->image=$request->image;
+            $blog->save();
+            return redirect('admin/blog');
+
+        }
+        else{
+            Session::put('blog_name',$blog_name);
+            Session::put('content',$content);
+            Session::put('image',$image);
+            return back()->with('error','Thông tin không hợp lệ vui lòng kiểm tra lại');
+        }
+    }
+
+    public function deleteBlog(Request $request, $id)
+    {
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
+        $data_blog=Blog::find($id);
+        $data_blog->is_active = 0;
+        $data_blog->save();
+        return redirect('admin/blog')->with('success', 'Blog deleted successfully!');
+    }
+
+    // public function getAll()
+    // {
+    //     $users = User::with('user_course')->get()->toArray();
+    //     echo '<pre>';
+    //     dd($users);
+    // }
 }

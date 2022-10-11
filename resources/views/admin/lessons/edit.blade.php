@@ -348,9 +348,21 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="{{asset('admin/user')}}">
+							<a href="{{asset('admin/course')}}">
 								<i class="fa fa-table"></i>
 								<p>Khóa học</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{asset('admin/lesson')}}">
+								<i class="fa fa-table"></i>
+								<p>Bài giảng</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{asset('admin/blog')}}">
+								<i class="fa fa-table"></i>
+								<p>Blog</p>
 							</a>
 						</li>
 					</ul>
@@ -366,55 +378,23 @@
                         <form class="form-horizontal" method="post" action="#">
                             @csrf
                             <div class="form-group">
-                               <label for="name_course" class="cols-sm-2 control-label">Tên khóa học</label>
+                               <label for="lesson_name" class="cols-sm-2 control-label">Tên bài giảng</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="text" class="form-control" name="caption" id="caption" placeholder="Nhập tên khóa học" value="{{$data_course->caption}}"/>
+                                     <input type="text" class="form-control" name="lesson_name" id="lesson_name" placeholder="Nhập tên khóa học" value="{{$data_lesson->lesson_name}}"/>
                                   </div>
                                </div>
                             </div>
                             <div class="form-group">
-                               <label for="title" class="cols-sm-2 control-label">Tiêu đề</label>
+                               <label for="image" class="cols-sm-2 control-label">Hình ảnh</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="text" class="form-control" name="title" id="title" placeholder="Nhập tiêu đề" value="{{$data_course->title}}"/>
+                                     <input type="file" class="form-control" name="image" id="image" value="{{$data_lesson->image}}"/>
                                   </div>
                                </div>
                             </div>
-                            <div class="form-group">
-                               <label for="price" class="cols-sm-2 control-label">Giá</label>
-                               <div class="cols-sm-10">
-                                  <div class="input-group">
-                                     <input type="text" class="form-control" name="price" id="price" placeholder="Nhập giá" value="{{$data_course->price}}"/>
-                                  </div>
-                               </div>
-                            </div>
-                            <div class="form-group">
-                               <label for="time" class="cols-sm-2 control-label">Thời gian khóa học</label>
-                               <div class="cols-sm-10">
-                                  <div class="input-group">
-                                     <input type="number" class="form-control" name="time" id="time" placeholder="Nhập thời gian cho khóa học" value="{{$data_course->time}}"/>
-                                  </div>
-                               </div>
-                            </div>
-                            <div class="form-group">
-                               <label for="iamge" class="cols-sm-2 control-label">Hình ảnh</label>
-                               <div class="cols-sm-10">
-                                  <div class="input-group">
-                                     <input type="file" class="form-control" name="image" id="image" value="{{$data_course->image}}"/>
-                                  </div>
-                               </div>
-                            </div>
-							<div class="form-group">
-								<label for="description" class="cols-sm-2 control-label">Mô tả</label>
-								<div class="cols-sm-10">
-								   <div class="input-group">
-									<textarea class="form-control" name="description" placeholder="Nhập mô tả" rows="5">{{$data_course->description}}</textarea>
-								   </div>
-								</div>
-							 </div>
                            <div class="form-group pull-right">
-                               <a href="{{asset('admin/course')}}" style="color: white" type="submit" class="btn btn-danger ">Hủy</a>
+                               <a href="{{asset('admin/lesson')}}" style="color: white" type="submit" class="btn btn-danger ">Hủy</a>
                                <button style="color: white" type="submit" class="btn btn-primary ">Lưu</button>
                            </div>
                         </form>

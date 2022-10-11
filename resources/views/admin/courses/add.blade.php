@@ -348,9 +348,21 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="{{asset('admin/user')}}">
+							<a href="{{asset('admin/course')}}">
 								<i class="fa fa-table"></i>
 								<p>Khóa học</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{asset('admin/lesson')}}">
+								<i class="fa fa-table"></i>
+								<p>Bài giảng</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{asset('admin/blog')}}">
+								<i class="fa fa-table"></i>
+								<p>Blog</p>
 							</a>
 						</li>
 					</ul>
@@ -398,7 +410,7 @@
                                </div>
                             </div>
                             <div class="form-group">
-                               <label for="iamge" class="cols-sm-2 control-label">Hình ảnh</label>
+                               <label for="image" class="cols-sm-2 control-label">Hình ảnh</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
                                      <input type="file" class="form-control" name="image" id="image" value="{{Session::get('image')}}"/>

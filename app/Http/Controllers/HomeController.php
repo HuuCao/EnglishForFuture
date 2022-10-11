@@ -87,7 +87,7 @@ class HomeController extends Controller
             } else if ($user->role == 2) {
                 Session::put('username',$user->username);
                 Session::put('email',$user->email);
-                return redirect("/");
+                return redirect("/home");
             }
              else {
                 return redirect('login');
@@ -101,7 +101,7 @@ class HomeController extends Controller
                 } else if ($user->role == 2) {
                     Session::put('email',$user->email);
                     Session::put('username',$user->username);
-                    return redirect("/");
+                    return redirect("/home");
                 }
                  else {
                     return redirect('login');

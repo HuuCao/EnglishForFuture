@@ -386,10 +386,10 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">{{Session::get('soluong')}} Người dùng</h4>
+									<h4 class="card-title">{{Session::get('soluong')}} Khóa học</h4>
 								</div>
 								<div class="button-add">
-									<a href="{{asset('admin/user/add')}}" type="button" class="btn btn-success pull-right mr-3 mt-3">Thêm mới</a>
+									<a href="{{asset('admin/blog/add')}}" type="button" class="btn btn-success pull-right mr-3 mt-3">Thêm mới</a>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
@@ -397,12 +397,10 @@
 											<thead>
 												<tr>
 													<th>STT</th>
-													<th>First Name</th>
-													<th>Last Name</th>
-													<th>Email</th>
-													<th>Phone</th>
-													<th>Role</th>
-													<th>Ngày tạo</th>
+													<th>Tên</th>
+													<th>Nội dung</th>
+													<th>Hình ảnh</th>
+													<th>Trạng thái</th>
 													<th>Action</th>
 												</tr>
 											</thead>
@@ -410,30 +408,26 @@
                                                 <?php
                                                     $i = 0;
                                                 ?>
-                                                @foreach ($data_user as $user)
+                                                @foreach ($data_blog as $blog)
                                                     <?php $i++ ?>
                                                     <tr>
                                                         <td>{{$i}}</td>
-                                                        <td>{{$user->first_name}}</td>
-                                                        <td>{{$user->last_name}}</td>
-                                                        <td>{{$user->email}}</td>
-                                                        <td>{{$user->phone}}</td>
+                                                        <td>{{$blog->blog_name}}</td>
+                                                        <td>{{$blog->content}}</td>
+														<td>{{$blog->image}}</td>
                                                         <td>
-                                                            @if($user->role==1)
-                                                                {{$user->role = "Admin"}}
-                                                            @elseif($user->role==2)
-                                                                {{$user->role = "Học viên"}}
+                                                            @if($blog->status==1)
+                                                                {{$blog->status = "On"}}
                                                             @else
-                                                                {{$user->role = "Giao viên"}}
+                                                                {{$blog->status = "Off"}}
                                                             @endif
                                                         </td>
-                                                        <td>{{$user->created_at}}</td>
                                                         <td>
                                                             <div class="form-button-action">
-                                                                <a type="submit" href="{{asset('admin/user/edit/'.$user->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                                                <a type="submit" data-toggle="tooltip" href="{{asset('admin/blog/edit/'.$blog->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Course">
                                                                     <i class="fa fa-edit"></i>
 																</a>
-                                                                <a type="submit" href="{{asset('admin/user/delete/'.$user->id)}}" name="delete" value="Delete" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                                                <a type="submit" data-toggle="tooltip" href="{{asset('admin/blog/delete/'.$blog->id)}}" name="delete" value="Delete" title="" class="btn btn-link btn-danger" data-original-title="Remove">
                                                                     <i class="fa fa-times"></i>
 																</a>
                                                             </div>
