@@ -375,13 +375,13 @@
                   <div class="card">
                      <div class="card-header">Register</div>
                      <div class="card-body">
-                        <form class="form-horizontal" method="post" action="#">
+                        <form class="form-horizontal" method="post" action="#" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
 								<label for="blog_name" class="cols-sm-2 control-label">Tên Blog</label>
 								<div class="cols-sm-10">
 										<div class="input-group">
-											<input type="text" class="form-control" name="blog_name" id="blog_name" placeholder="Nhập tên blog" value="{{Session::get('blog_name')}}"/>
+											<input type="text" class="form-control" name="blog_name" id="blog_name" placeholder="Nhập tên blog" required value="{{Session::get('blog_name')}}"/>
 										</div>
 								</div>
                             </div>
@@ -389,7 +389,7 @@
                                <label for="content" class="cols-sm-2 control-label">Nội dung</label>
                                <div class="cols-sm-10">
 									<div class="input-group">
-										<textarea class="form-control" name="content" placeholder="Nhập nội dung" rows="5">{{Session::get('content')}}</textarea>
+										<textarea class="form-control" name="content" placeholder="Nhập nội dung" required rows="5">{{Session::get('content')}}</textarea>
 									</div>
                                </div>
                             </div>
@@ -398,7 +398,7 @@
                                <label for="iamge" class="cols-sm-2 control-label">Hình ảnh</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="file" class="form-control" name="image" id="image" value="{{Session::get('image')}}"/>
+                                     <input type="file" class="form-control" name="image" id="image" required value="{{Session::get('image')}}"/>
                                   </div>
                                </div>
                             </div>

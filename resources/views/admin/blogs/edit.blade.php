@@ -375,13 +375,13 @@
                   <div class="card">
                      <div class="card-header">Register</div>
                      <div class="card-body">
-                        <form class="form-horizontal" method="post" action="#">
+                        <form class="form-horizontal" method="post" action="#" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                <label for="blog_name" class="cols-sm-2 control-label">Tên Blog</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="text" class="form-control" name="blog_name" id="blog_name" placeholder="Nhập tên blog" value="{{$data_blog->blog_name}}"/>
+                                     <input type="text" class="form-control" name="blog_name" id="blog_name" placeholder="Nhập tên blog" required required value="{{$data_blog->blog_name}}"/>
                                   </div>
                                </div>
                             </div>
@@ -389,7 +389,7 @@
                                <label for="content" class="cols-sm-2 control-label">Nội dung</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="text" class="form-control" name="content" id="content" placeholder="Nhập nội dung" value="{{$data_blog->content}}"/>
+                                     <input type="text" class="form-control" name="content" id="content" placeholder="Nhập nội dung" required value="{{$data_blog->content}}"/>
                                   </div>
                                </div>
                             </div>
@@ -397,10 +397,53 @@
                                <label for="iamge" class="cols-sm-2 control-label">Hình ảnh</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="file" class="form-control" name="image" id="image" value="{{$data_blog->image}}"/>
+                                     <input type="file" class="form-control" name="image" id="image" required value="{{$data_blog->image}}"/>
+									 <img style="width: 20%;" src="{{$data_blog->image}}">
                                   </div>
                                </div>
                             </div>
+							<div class="form-group">
+								<label for="email" class="cols-sm-2 control-label">Trạng thái</label>
+								<div class="cols-sm-10">
+								   <div class="input-group">
+									 <div style="display: flex; margin-top: 10px">
+										 <div style="display: flex; align-items: center" class="form-check">
+											 <input style="width: 20px; height: 20px" class="form-check-input" type="radio" name="status" value="1"
+													id="display"checked />
+											 <label style="
+											  font-family: 'Montserrat';
+											  font-style: normal;
+											  font-weight: 400;
+											  font-size: 15px;
+											  color: #666666;
+											  margin-left: 10px;
+											  margin-top: 5px;
+											  " class="form-check-label" for="flexRadioDefault1">
+												 On
+											 </label>
+										 </div>
+										 <div style="
+										   display: flex;
+										   align-items: center;
+										   margin-left: 30px;
+										   " class="form-check">
+											 <input style="width: 20px; height: 20px" class="form-check-input" type="radio" value="0" name="status"
+													id="display1"  />
+											 <label style="
+											  font-family: 'Montserrat';
+											  font-style: normal;
+											  font-weight: 400;
+											  font-size: 15px;
+											  color: #666666;
+											  margin-left: 10px;
+											  margin-top: 5px;
+											  " class="form-check-label" for="flexRadioDefault2">
+												 Off
+											 </label>
+										 </div>
+								   </div>
+								</div>
+							</div>
                            <div class="form-group pull-right">
                                <a href="{{asset('admin/blog')}}" style="color: white" type="submit" class="btn btn-danger ">Hủy</a>
                                <button style="color: white" type="submit" class="btn btn-primary ">Lưu</button>

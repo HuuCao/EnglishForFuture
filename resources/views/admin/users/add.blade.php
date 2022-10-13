@@ -389,7 +389,7 @@
                                <label for="email" class="cols-sm-2 control-label">Email</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email" value="{{Session::get('email')}}"/>
+                                     <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email" required value="{{Session::get('email')}}"/>
                                   </div>
                                </div>
                             </div>
@@ -397,7 +397,7 @@
                                <label for="first_name" class="cols-sm-2 control-label">First Name</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter First name" value="{{Session::get('first_name')}}"/>
+                                     <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter First name" required value="{{Session::get('first_name')}}"/>
                                   </div>
                                </div>
                             </div>
@@ -405,7 +405,7 @@
                                <label for="last_name" class="cols-sm-2 control-label">Last Name</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter Last Name" value="{{Session::get('last_name')}}"/>
+                                     <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter Last Name" required value="{{Session::get('last_name')}}"/>
                                   </div>
                                </div>
                             </div>
@@ -413,7 +413,7 @@
                                <label for="birthday" class="cols-sm-2 control-label">Birthday</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="date" class="form-control" name="birthday" id="birthday" placeholder="Enter Birthday" value="{{Session::get('birthday')}}"/>
+                                     <input type="date" class="form-control" name="birthday" id="birthday" placeholder="Enter Birthday" required value="{{Session::get('birthday')}}"/>
                                   </div>
                                </div>
                             </div>
@@ -421,7 +421,7 @@
                                <label for="phone" class="cols-sm-2 control-label">Phone</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="tel" class="form-control" name="phone" id="phone" placeholder="Enter Phone" value="{{Session::get('phone')}}"/>
+                                     <input type="tel" class="form-control" name="phone" id="phone" placeholder="Enter Phone" required value="{{Session::get('phone')}}"/>
                                   </div>
                                </div>
                             </div>
@@ -471,7 +471,7 @@
                                <label for="password" class="cols-sm-2 control-label">Password</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" />
+                                     <input type="password" class="form-control" name="password" id="password" required placeholder="Enter Password" />
                                   </div>
                                </div>
                             </div>

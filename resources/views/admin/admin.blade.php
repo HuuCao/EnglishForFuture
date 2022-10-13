@@ -25,6 +25,7 @@
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="{{asset('public/admin/css/style.css')}}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 	<div class="wrapper">
@@ -382,7 +383,7 @@
 							</div>
 							<div class="ml-md-auto py-2 py-md-0">
 								<a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
-								<a href="#" class="btn btn-secondary btn-round">Add Customer</a>
+								<a href="{{asset('admin/user/add')}}" class="btn btn-secondary btn-round">Add Customer</a>
 							</div>
 						</div>
 					</div>
@@ -392,20 +393,20 @@
 						<div class="col-md-6">
 							<div class="card full-height">
 								<div class="card-body">
-									<div class="card-title">Overall statistics</div>
-									<div class="card-category">Daily information about statistics in system</div>
+									<div class="card-title">Thống kê website</div>
+									<div class="card-category">Thông tin hàng ngày về số liệu thống kê trong hệ thống</div>
 									<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
 										<div class="px-2 pb-2 pb-md-0 text-center">
 											<div id="circles-1"></div>
-											<h6 class="fw-bold mt-3 mb-0">New Users</h6>
+											<h6 class="fw-bold mt-3 mb-0">Học viên</h6>
 										</div>
 										<div class="px-2 pb-2 pb-md-0 text-center">
 											<div id="circles-2"></div>
-											<h6 class="fw-bold mt-3 mb-0">Sales</h6>
+											<h6 class="fw-bold mt-3 mb-0">Khóa học</h6>
 										</div>
 										<div class="px-2 pb-2 pb-md-0 text-center">
 											<div id="circles-3"></div>
-											<h6 class="fw-bold mt-3 mb-0">Subscribers</h6>
+											<h6 class="fw-bold mt-3 mb-0">Bài viết</h6>
 										</div>
 									</div>
 								</div>

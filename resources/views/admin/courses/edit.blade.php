@@ -375,13 +375,13 @@
                   <div class="card">
                      <div class="card-header">Register</div>
                      <div class="card-body">
-                        <form class="form-horizontal" method="post" action="#">
+                        <form class="form-horizontal" method="post" action="#" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                <label for="name_course" class="cols-sm-2 control-label">Tên khóa học</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="text" class="form-control" name="caption" id="caption" placeholder="Nhập tên khóa học" value="{{$data_course->caption}}"/>
+                                     <input type="text" class="form-control" name="caption" id="caption" placeholder="Nhập tên khóa học" required value="{{$data_course->caption}}"/>
                                   </div>
                                </div>
                             </div>
@@ -389,7 +389,7 @@
                                <label for="title" class="cols-sm-2 control-label">Tiêu đề</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="text" class="form-control" name="title" id="title" placeholder="Nhập tiêu đề" value="{{$data_course->title}}"/>
+                                     <input type="text" class="form-control" name="title" id="title" placeholder="Nhập tiêu đề" required value="{{$data_course->title}}"/>
                                   </div>
                                </div>
                             </div>
@@ -397,7 +397,7 @@
                                <label for="price" class="cols-sm-2 control-label">Giá</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="text" class="form-control" name="price" id="price" placeholder="Nhập giá" value="{{$data_course->price}}"/>
+                                     <input type="text" class="form-control" name="price" id="price" placeholder="Nhập giá" required value="{{$data_course->price}}"/>
                                   </div>
                                </div>
                             </div>
@@ -405,7 +405,7 @@
                                <label for="time" class="cols-sm-2 control-label">Thời gian khóa học</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="number" class="form-control" name="time" id="time" placeholder="Nhập thời gian cho khóa học" value="{{$data_course->time}}"/>
+                                     <input type="number" class="form-control" name="time" id="time" required placeholder="Nhập thời gian cho khóa học" value="{{$data_course->time}}"/>
                                   </div>
                                </div>
                             </div>
@@ -413,15 +413,58 @@
                                <label for="iamge" class="cols-sm-2 control-label">Hình ảnh</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="file" class="form-control" name="image" id="image" value="{{$data_course->image}}"/>
+                                     <input type="file" class="form-control" name="image" id="image" required value="{{$data_course->image}}"/>
+                                     <img style="width: 20%;" src="{{$data_course->image}}">
                                   </div>
                                </div>
                             </div>
 							<div class="form-group">
+								<label for="email" class="cols-sm-2 control-label">Trạng thái</label>
+								<div class="cols-sm-10">
+								   <div class="input-group">
+									 <div style="display: flex; margin-top: 10px">
+										 <div style="display: flex; align-items: center" class="form-check">
+											 <input style="width: 20px; height: 20px" class="form-check-input" type="radio" name="status" value="1"
+													id="display"checked />
+											 <label style="
+											  font-family: 'Montserrat';
+											  font-style: normal;
+											  font-weight: 400;
+											  font-size: 15px;
+											  color: #666666;
+											  margin-left: 10px;
+											  margin-top: 5px;
+											  " class="form-check-label" for="flexRadioDefault1">
+												 On
+											 </label>
+										 </div>
+										 <div style="
+										   display: flex;
+										   align-items: center;
+										   margin-left: 30px;
+										   " class="form-check">
+											 <input style="width: 20px; height: 20px" class="form-check-input" type="radio" value="0" name="status"
+													id="display1"  />
+											 <label style="
+											  font-family: 'Montserrat';
+											  font-style: normal;
+											  font-weight: 400;
+											  font-size: 15px;
+											  color: #666666;
+											  margin-left: 10px;
+											  margin-top: 5px;
+											  " class="form-check-label" for="flexRadioDefault2">
+												 Off
+											 </label>
+										 </div>
+								   </div>
+								</div>
+							</div>
+							<div class="form-group">
 								<label for="description" class="cols-sm-2 control-label">Mô tả</label>
 								<div class="cols-sm-10">
 								   <div class="input-group">
-									<textarea class="form-control" name="description" placeholder="Nhập mô tả" rows="5">{{$data_course->description}}</textarea>
+									<textarea class="form-control" name="description" required placeholder="Nhập mô tả" rows="5">{{$data_course->description}}</textarea>
 								   </div>
 								</div>
 							 </div>

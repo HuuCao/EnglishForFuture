@@ -73,6 +73,7 @@ class AdminController extends Controller
         }
         $user->role=3; //role 3 là giáo viên
         $user->email=$request->email;
+        $user->username=$request->username;
         $user->first_name=$request->first_name;
         $user->last_name=$request->last_name;
         $user->birthday=$request->birthday;
@@ -97,6 +98,7 @@ class AdminController extends Controller
     public function postEditUser(Request $request, $id)
     {
         $username=$request->username;
+        $email=$request->email;
         $first_name=$request->first_name;
         $last_name=$request->last_name;
         $birthday=$request->birthday;
@@ -105,6 +107,7 @@ class AdminController extends Controller
 
         $check_data=User::where('username',$username)
             ->where('first_name',$first_name)
+            ->where('email',$email)
             ->where('last_name',$last_name)
             ->where('birthday',$birthday)
             ->where('phone',$phone)
@@ -115,6 +118,7 @@ class AdminController extends Controller
         if($check_data==null){
             $user= User::find($id);
             $user->username=$request->username;
+            $user->email=$request->email;
             $user->first_name=$request->first_name;
             $user->last_name=$request->last_name;
             $user->birthday=$request->birthday;
@@ -126,6 +130,7 @@ class AdminController extends Controller
         }
         else{
             Session::put('username',$username);
+            Session::put('email',$email);
             Session::put('first_name',$first_name);
             Session::put('last_name',$last_name);
             Session::put('birthday',$birthday);
@@ -185,25 +190,20 @@ class AdminController extends Controller
         if($dataCaption!=null){
             return redirect('admin/course')->with('error','Caption đã tồn tại');
         }
-        
         $course->title=$request->title;
         $course->caption=$request->caption;
         $course->description=$request->description;
         $course->price=$request->price;
         $course->time=$request->time;
-        dd($request->hasFile('image'));
         if ($request->hasFile("image")) {
-            $upload_file = $request->file("image");
             $file = $request->image->getClientOriginalName();
             $day = date("Y-m-d");
             $file_custom = $day . "_" . $file;
-            $file_custom2 =
+            $file_custom =
                 "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
-            $request->images->move("upload/", $file_custom);
-
-            Session::put('image',$file_custom2);
+            $course->image = $file_custom;
+            $request->image->move("upload/", $file_custom);
         }
-        // dd($request->hasFile("image"));
         $course->save();
 
         return redirect('admin/course');
@@ -227,7 +227,6 @@ class AdminController extends Controller
         $description=$request->description;
         $price=$request->price;
         $time=$request->time;
-        $image=$request->image;
 
         $check_data=Course::where('title',$title)
             ->where('caption',$caption)
@@ -243,8 +242,17 @@ class AdminController extends Controller
             $course->caption=$request->caption;
             $course->description=$request->description;
             $course->price=$request->price;
+            $course->status=$request->status;
             $course->time=$request->time;
-            $course->image=$request->image;
+            if ($request->hasFile("image")) {
+                $file = $request->image->getClientOriginalName();
+                $day = date("Y-m-d");
+                $file_custom = $day . "_" . $file;
+                $file_custom =
+                    "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+                $course->image = $file_custom;
+                $request->image->move("upload/", $file_custom);
+            }
             $course->save();
             return redirect('admin/course');
 
@@ -269,7 +277,7 @@ class AdminController extends Controller
         $data_course=Course::find($id);
         $data_course->is_active = 0;
         $data_course->save();
-        return redirect('admin/course')->with('success', 'User deleted successfully!');
+        return redirect('admin/course')->with('success', 'Course deleted successfully!');
     }
 
     // ==================================== //
@@ -307,7 +315,15 @@ class AdminController extends Controller
         }
 
         $lesson->lesson_name=$request->lesson_name;
-        $lesson->image=$request->image;
+        if ($request->hasFile("image")) {
+            $file = $request->image->getClientOriginalName();
+            $day = date("Y-m-d");
+            $file_custom = $day . "_" . $file;
+            $file_custom =
+                "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+            $lesson->image = $file_custom;
+            $request->image->move("upload/", $file_custom);
+        }
         $lesson->save();
 
         return redirect('admin/lesson');
@@ -327,7 +343,7 @@ class AdminController extends Controller
     public function postEditLesson(Request $request, $id)
     {
         $lesson_name=$request->lesson_name;
-        $image=$request->image;
+        $status=$request->status;
 
         $check_data=Lesson::where('lesson_name',$lesson_name)
             ->where('lesson_name',$lesson_name)
@@ -337,7 +353,16 @@ class AdminController extends Controller
         if($check_data==null){
             $lesson= Lesson::find($id);
             $lesson->lesson_name=$request->lesson_name;
-            $lesson->image=$request->image;
+            $lesson->status=$request->status;
+            if ($request->hasFile("image")) {
+                $file = $request->image->getClientOriginalName();
+                $day = date("Y-m-d");
+                $file_custom = $day . "_" . $file;
+                $file_custom =
+                    "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+                $lesson->image = $file_custom;
+                $request->image->move("upload/", $file_custom);
+            }
             $lesson->save();
             return redirect('admin/lesson');
 
@@ -397,7 +422,15 @@ class AdminController extends Controller
 
         $blog->blog_name=$request->blog_name;
         $blog->content=$request->content;
-        $blog->image=$request->image;
+        if ($request->hasFile("image")) {
+            $file = $request->image->getClientOriginalName();
+            $day = date("Y-m-d");
+            $file_custom = $day . "_" . $file;
+            $file_custom =
+                "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+            $blog->image = $file_custom;
+            $request->image->move("upload/", $file_custom);
+        }
         $blog->save();
 
         return redirect('admin/blog');
@@ -418,7 +451,7 @@ class AdminController extends Controller
     {
         $blog_name=$request->blog_name;
         $content=$request->content;
-        $image=$request->image;
+        $status=$request->status;
 
         $check_data=Blog::where('blog_name',$blog_name)
             ->where('blog_name',$blog_name)
@@ -429,7 +462,16 @@ class AdminController extends Controller
             $blog= Blog::find($id);
             $blog->blog_name=$request->blog_name;
             $blog->content=$request->content;
-            $blog->image=$request->image;
+            $blog->status=$request->status;
+            if ($request->hasFile("image")) {
+                $file = $request->image->getClientOriginalName();
+                $day = date("Y-m-d");
+                $file_custom = $day . "_" . $file;
+                $file_custom =
+                    "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+                $blog->image = $file_custom;
+                $request->image->move("upload/", $file_custom);
+            }
             $blog->save();
             return redirect('admin/blog');
 

@@ -373,7 +373,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Danh sách người dùng</h4>
+						<h4 class="page-title">Danh sách bài viết</h4>
 					</div>
 					
 					@if ($message = Session::get('success'))
@@ -386,7 +386,7 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">{{Session::get('soluong')}} Khóa học</h4>
+									<h4 class="card-title">{{Session::get('soluong')}} Blog</h4>
 								</div>
 								<div class="button-add">
 									<a href="{{asset('admin/blog/add')}}" type="button" class="btn btn-success pull-right mr-3 mt-3">Thêm mới</a>
@@ -414,7 +414,7 @@
                                                         <td>{{$i}}</td>
                                                         <td>{{$blog->blog_name}}</td>
                                                         <td>{{$blog->content}}</td>
-														<td>{{$blog->image}}</td>
+														<td><img style="width: 70%;" src="{{$blog->image}}"></td>
                                                         <td>
                                                             @if($blog->status==1)
                                                                 {{$blog->status = "On"}}

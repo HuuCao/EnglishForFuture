@@ -375,13 +375,13 @@
                   <div class="card">
                      <div class="card-header">Register</div>
                      <div class="card-body">
-                        <form class="form-horizontal" method="post" action="#">
+                        <form class="form-horizontal" method="post" action="#" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                <label for="lesson_name" class="cols-sm-2 control-label">Tên bài giảng</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="text" class="form-control" name="lesson_name" id="lesson_name" placeholder="Nhập tên khóa học" value="{{Session::get('caption')}}"/>
+                                     <input type="text" class="form-control" name="lesson_name" id="lesson_name" placeholder="Nhập tên khóa học" required required value="{{Session::get('caption')}}"/>
                                   </div>
                                </div>
                             </div>
@@ -389,7 +389,7 @@
                                <label for="image" class="cols-sm-2 control-label">Hình ảnh</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="file" class="form-control" name="image" id="image" value="{{Session::get('image')}}"/>
+                                     <input type="file" class="form-control" name="image" id="image" required required value="{{Session::get('image')}}"/>
                                   </div>
                                </div>
                             </div>

@@ -375,13 +375,13 @@
                   <div class="card">
                      <div class="card-header">Register</div>
                      <div class="card-body">
-                        <form class="form-horizontal" method="post" action="#">
+                        <form class="form-horizontal" method="post" action="#" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                <label for="name_course" class="cols-sm-2 control-label">Tên khóa học</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="text" class="form-control" name="caption" id="caption" placeholder="Nhập tên khóa học" value="{{Session::get('caption')}}"/>
+                                     <input type="text" class="form-control" name="caption" id="caption" placeholder="Nhập tên khóa học" required value="{{Session::get('caption')}}"/>
                                   </div>
                                </div>
                             </div>
@@ -389,7 +389,7 @@
                                <label for="title" class="cols-sm-2 control-label">Tiêu đề</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="text" class="form-control" name="title" id="title" placeholder="Nhập tiêu đề" value="{{Session::get('title')}}"/>
+                                     <input type="text" class="form-control" name="title" id="title" placeholder="Nhập tiêu đề" required value="{{Session::get('title')}}"/>
                                   </div>
                                </div>
                             </div>
@@ -397,7 +397,7 @@
                                <label for="price" class="cols-sm-2 control-label">Giá</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="text" class="form-control" name="price" id="price" placeholder="Nhập giá" value="{{Session::get('price')}}"/>
+                                     <input type="text" class="form-control" name="price" id="price" placeholder="Nhập giá" required value="{{Session::get('price')}}"/>
                                   </div>
                                </div>
                             </div>
@@ -405,7 +405,7 @@
                                <label for="time" class="cols-sm-2 control-label">Thời gian khóa học</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="number" class="form-control" name="time" id="time" placeholder="Nhập thời gian cho khóa học" value="{{Session::get('time')}}"/>
+                                     <input type="number" class="form-control" name="time" id="time" placeholder="Nhập thời gian cho khóa học" required value="{{Session::get('time')}}"/>
                                   </div>
                                </div>
                             </div>
@@ -413,7 +413,7 @@
                                <label for="image" class="cols-sm-2 control-label">Hình ảnh</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="file" class="form-control" name="image" id="image" value="{{Session::get('image')}}"/>
+                                     <input type="file" class="form-control" name="image" id="image" required value="{{Session::get('image')}}"/>
                                   </div>
                                </div>
                             </div>
@@ -421,7 +421,7 @@
 								<label for="description" class="cols-sm-2 control-label">Mô tả</label>
 								<div class="cols-sm-10">
 								   <div class="input-group">
-									<textarea class="form-control" name="description" placeholder="Nhập mô tả" rows="5">{{Session::get('description')}}</textarea>
+									<textarea class="form-control" name="description" required placeholder="Nhập mô tả" rows="5">{{Session::get('description')}}</textarea>
 								   </div>
 								</div>
 							 </div>

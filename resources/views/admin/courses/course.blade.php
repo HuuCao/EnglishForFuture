@@ -373,7 +373,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Danh sách người dùng</h4>
+						<h4 class="page-title">Danh sách khóa học</h4>
 					</div>
 					
 					@if ($message = Session::get('success'))
@@ -400,9 +400,10 @@
 													<th>Tên</th>
 													<th>Tiêu đề</th>
 													<th>Mô tả</th>
+													<th>Thời gian</th>
 													<th>Giá</th>
 													<th>Hình ảnh</th>
-													<th>trạng thái</th>
+													<th>Trạng thái</th>
 													<th>Action</th>
 												</tr>
 											</thead>
@@ -417,8 +418,9 @@
                                                         <td>{{$course->caption}}</td>
                                                         <td>{{$course->title}}</td>
                                                         <td>{{$course->description}}</td>
+                                                        <td>{{$course->time}} Tuần</td>
 														<td>{{$course->price}}</td>
-														<td>{{$course->image}}</td>
+														<td><img style="width: 70%;" src="{{$course->image}}"></td>
                                                         <td>
                                                             @if($course->status==1)
                                                                 {{$course->status = "On"}}
@@ -428,9 +430,6 @@
                                                         </td>
                                                         <td>
                                                             <div class="form-button-action">
-																<a type="submit" data-toggle="tooltip" href="{{asset('admin/course/edit/'.$course->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="List Lesson">
-                                                                    <i class="fa fa-info"></i>
-																</a>
                                                                 <a type="submit" data-toggle="tooltip" href="{{asset('admin/course/edit/'.$course->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Course">
                                                                     <i class="fa fa-edit"></i>
 																</a>

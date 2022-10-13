@@ -373,7 +373,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Danh sách người dùng</h4>
+						<h4 class="page-title">Danh sách bài giảng</h4>
 					</div>
 					
 					@if ($message = Session::get('success'))
@@ -386,7 +386,7 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">{{Session::get('soluong')}} Khóa học</h4>
+									<h4 class="card-title">{{Session::get('soluong')}} Bài giảng</h4>
 								</div>
 								<div class="button-add">
 									<a href="{{asset('admin/lesson/add')}}" type="button" class="btn btn-success pull-right mr-3 mt-3">Thêm mới</a>
@@ -399,8 +399,6 @@
 													<th>STT</th>
 													<th>Tên</th>
 													<th>Hình ảnh</th>
-													{{-- <th>Danh sách video</th>
-													<th>Danh sách bài thi</th> --}}
 													<th>Trạng thái</th>
 													<th>Action</th>
 												</tr>
@@ -414,9 +412,7 @@
                                                     <tr>
                                                         <td>{{$i}}</td>
                                                         <td>{{$lesson->lesson_name}}</td>
-                                                        <td>{{$lesson->image}}</td>
-                                                        {{-- <td>{{$lesson->id_video}}</td>
-														<td>{{$lesson->id_exam}}</td> --}}
+                                                        <td><img style="width: 70%;" src="{{$lesson->image}}"></td>
                                                         <td>
                                                             @if($lesson->status==1)
                                                                 {{$lesson->status = "On"}}

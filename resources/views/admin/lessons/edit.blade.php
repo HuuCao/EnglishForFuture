@@ -375,13 +375,13 @@
                   <div class="card">
                      <div class="card-header">Register</div>
                      <div class="card-body">
-                        <form class="form-horizontal" method="post" action="#">
+                        <form class="form-horizontal" method="post" action="#" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                <label for="lesson_name" class="cols-sm-2 control-label">Tên bài giảng</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="text" class="form-control" name="lesson_name" id="lesson_name" placeholder="Nhập tên khóa học" value="{{$data_lesson->lesson_name}}"/>
+                                     <input type="text" class="form-control" name="lesson_name" id="lesson_name" placeholder="Nhập tên khóa học" required value="{{$data_lesson->lesson_name}}"/>
                                   </div>
                                </div>
                             </div>
@@ -389,10 +389,52 @@
                                <label for="image" class="cols-sm-2 control-label">Hình ảnh</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">
-                                     <input type="file" class="form-control" name="image" id="image" value="{{$data_lesson->image}}"/>
+                                     <input type="file" class="form-control" name="image" id="image" required value="{{$data_lesson->image}}"/>
                                   </div>
                                </div>
                             </div>
+							<div class="form-group">
+								<label for="email" class="cols-sm-2 control-label">Trạng thái</label>
+								<div class="cols-sm-10">
+								   <div class="input-group">
+									 <div style="display: flex; margin-top: 10px">
+										 <div style="display: flex; align-items: center" class="form-check">
+											 <input style="width: 20px; height: 20px" class="form-check-input" type="radio" name="status" value="1"
+													id="display"checked />
+											 <label style="
+											  font-family: 'Montserrat';
+											  font-style: normal;
+											  font-weight: 400;
+											  font-size: 15px;
+											  color: #666666;
+											  margin-left: 10px;
+											  margin-top: 5px;
+											  " class="form-check-label" for="flexRadioDefault1">
+												 On
+											 </label>
+										 </div>
+										 <div style="
+										   display: flex;
+										   align-items: center;
+										   margin-left: 30px;
+										   " class="form-check">
+											 <input style="width: 20px; height: 20px" class="form-check-input" type="radio" value="0" name="status"
+													id="display1"  />
+											 <label style="
+											  font-family: 'Montserrat';
+											  font-style: normal;
+											  font-weight: 400;
+											  font-size: 15px;
+											  color: #666666;
+											  margin-left: 10px;
+											  margin-top: 5px;
+											  " class="form-check-label" for="flexRadioDefault2">
+												 Off
+											 </label>
+										 </div>
+								   </div>
+								</div>
+							</div>
                            <div class="form-group pull-right">
                                <a href="{{asset('admin/lesson')}}" style="color: white" type="submit" class="btn btn-danger ">Hủy</a>
                                <button style="color: white" type="submit" class="btn btn-primary ">Lưu</button>
