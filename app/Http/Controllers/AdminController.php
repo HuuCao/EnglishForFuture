@@ -496,10 +496,10 @@ class AdminController extends Controller
         return redirect('admin/blog')->with('success', 'Blog deleted successfully!');
     }
 
-    // public function getAll()
-    // {
-    //     $users = User::with('user_course')->get()->toArray();
-    //     echo '<pre>';
-    //     dd($users);
-    // }
+    public function getAll()
+    {
+        $users = DB::table('tbl_course')->join('tbl_user', 'tbl_course.id_user', '=', 'tbl_user.id')->get();
+        echo '<pre>';
+        dd($users);
+    }
 }
