@@ -498,8 +498,9 @@ class AdminController extends Controller
 
     public function getAll()
     {
-        $users = DB::table('tbl_course')->join('tbl_user', 'tbl_course.id_user', '=', 'tbl_user.id')->get();
-        echo '<pre>';
+        $users = Course::with('users')->get();
+        // $courses = $users->courses;
+        
         dd($users);
     }
 }

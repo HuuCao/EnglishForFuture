@@ -40,9 +40,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function user_course()
+    public function courses()
     {
-        return $this->hasMany('App\Models\User_Course', 'id_user', 'id');
+        return $this->belongsTo(Course::class, "id_user", "id");
     }
 
 }
