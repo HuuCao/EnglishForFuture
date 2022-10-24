@@ -66,6 +66,26 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/edit/{id}', [AdminController::class, 'postEditLesson']);
         Route::get('/delete/{id}', [AdminController::class, 'deleteLesson']);
     }); 
+
+    Route::group(['prefix' => '/exam'], function () {
+        Route::get('/', [AdminController::class, 'getAllExam']);
+        Route::get('/add', [AdminController::class, 'addExam']);
+        Route::post('/add', [AdminController::class, 'postAddExam']);
+        Route::get('/edit/{id}', [AdminController::class, 'editExam']);
+        Route::post('/edit/{id}', [AdminController::class, 'postEditExam']);
+        Route::get('/delete/{id}', [AdminController::class, 'deleteExam']);
+    }); 
+
+    Route::group(['prefix' => '/question'], function () {
+        Route::get('/', [AdminController::class, 'getAllQuestion']);
+        Route::get('/add', [AdminController::class, 'addQuestion']);
+        Route::post('/add', [AdminController::class, 'postAddQuestion']);
+        Route::get('/edit/{id}', [AdminController::class, 'editQuestion']);
+        Route::post('/edit/{id}', [AdminController::class, 'postEditQuestion']);
+        Route::get('/delete/{id}', [AdminController::class, 'deleteQuestion']);
+
+        Route::post('file-import', [AdminController::class, 'fileImport'])->name('file-import');
+    }); 
     
     Route::group(['prefix' => '/blog'], function () {
         Route::get('/', [AdminController::class, 'getAllBlog']);
@@ -76,5 +96,5 @@ Route::group(['prefix' => '/admin'], function () {
         Route::get('/delete/{id}', [AdminController::class, 'deleteBlog']);
     }); 
 
-    Route::get('/userget', [AdminController::class, 'getAll']); 
+    Route::get('/userget/{id}', [AdminController::class, 'getAll']); 
 });

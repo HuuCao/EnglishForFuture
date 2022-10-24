@@ -5,9 +5,13 @@ use App\Models\User;
 use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\Blog;
+use App\Models\Exam;
+use App\Models\Question;
 use App\Models\User_Course;
+use App\Imports\QuestionImports;
 use DB;
 use Session;
+use Excel;
 
 use Illuminate\Http\Request;
 
@@ -496,11 +500,233 @@ class AdminController extends Controller
         return redirect('admin/blog')->with('success', 'Blog deleted successfully!');
     }
 
-    public function getAll()
+    // public function getAll($id)
+    // {
+    //     $user = User::where('id',$id)->first();
+    //     echo $user->username .'<br>';
+    //     $courses = $user->courses;
+    //     foreach ($courses as $course) {
+    //         echo($course->title. '<br>');
+    //     }
+    // }
+
+
+    // ==================================== //
+    //                 EXAM                 //
+    // ==================================== //
+
+    public function getAllExam()
     {
-        $users = Course::with('users')->get();
-        // $courses = $users->courses;
-        
-        dd($users);
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
+
+        $data_exam=Exam::where('is_active', 1)->get();
+        Session::put('soluong',count(($data_exam)));
+        return view('admin.exams.exam', compact('data_exam'));
+    }
+
+    public function addExam()
+    {
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
+        return view("admin.lessons.add");
+    }
+    
+    public function postAddExam(Request $request)
+    {
+        $lesson = new Exam;
+
+        $data=Exam::where('lesson_name',$request->lesson_name)->where('is_active', 1)->first();
+        if($data!=null){
+            return redirect('admin/lesson/add')->with('error','Tên bài giảng đã tồn tại');
+        }
+
+        $lesson->lesson_name=$request->lesson_name;
+        if ($request->hasFile("image")) {
+            $file = $request->image->getClientOriginalName();
+            $day = date("Y-m-d");
+            $file_custom = $day . "_" . $file;
+            $file_custom =
+                "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+            $lesson->image = $file_custom;
+            $request->image->move("upload/", $file_custom);
+        }
+        $lesson->save();
+
+        return redirect('admin/lesson');
+    }
+
+    public function editExam($id)
+    {
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
+            $data_lesson=Exam::find($id);
+            // dd($data_user);
+            return view('admin.lessons.edit',compact('data_lesson'));
+    }
+
+    public function postEditExam(Request $request, $id)
+    {
+        $lesson_name=$request->lesson_name;
+        $status=$request->status;
+
+        $check_data=Exam::where('lesson_name',$lesson_name)
+            ->where('lesson_name',$lesson_name)
+            ->where('id','<>',$id)
+            ->first();
+            // dd($check_data);
+        if($check_data==null){
+            $lesson= Exam::find($id);
+            $lesson->lesson_name=$request->lesson_name;
+            $lesson->status=$request->status;
+            if ($request->hasFile("image")) {
+                $file = $request->image->getClientOriginalName();
+                $day = date("Y-m-d");
+                $file_custom = $day . "_" . $file;
+                $file_custom =
+                    "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+                $lesson->image = $file_custom;
+                $request->image->move("upload/", $file_custom);
+            }
+            $lesson->save();
+            return redirect('admin/lesson');
+
+        }
+        else{
+            Session::put('lesson_name',$lesson_name);
+            Session::put('image',$image);
+            return back()->with('error','Thông tin không hợp lệ vui lòng kiểm tra lại');
+        }
+    }
+
+    public function deleteExam(Request $request, $id)
+    {
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
+        $data_lesson=Exam::find($id);
+        $data_lesson->is_active = 0;
+        $data_lesson->save();
+        return redirect('admin/lesson')->with('success', 'Exam deleted successfully!');
+    }
+    
+
+    // ==================================== //
+    //                 QUESTION             //
+    // ==================================== //
+
+    public function getAllQuestion()
+    {
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
+
+        $data_question=Question::where('is_active', 1)->get();
+        Session::put('soluong',count(($data_question)));
+        return view('admin.questions.question', compact('data_question'));
+    }
+
+    public function addQuestion()
+    {
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
+        return view("admin.lessons.add");
+    }
+    
+    public function postAddQuestion(Request $request)
+    {
+        $lesson = new Question;
+
+        $data=Question::where('lesson_name',$request->lesson_name)->where('is_active', 1)->first();
+        if($data!=null){
+            return redirect('admin/lesson/add')->with('error','Tên bài giảng đã tồn tại');
+        }
+
+        $lesson->lesson_name=$request->lesson_name;
+        if ($request->hasFile("image")) {
+            $file = $request->image->getClientOriginalName();
+            $day = date("Y-m-d");
+            $file_custom = $day . "_" . $file;
+            $file_custom =
+                "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+            $lesson->image = $file_custom;
+            $request->image->move("upload/", $file_custom);
+        }
+        $lesson->save();
+
+        return redirect('admin/lesson');
+    }
+
+    public function editQuestion($id)
+    {
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
+            $data_lesson=Question::find($id);
+            // dd($data_user);
+            return view('admin.lessons.edit',compact('data_lesson'));
+    }
+
+    public function postEditQuestion(Request $request, $id)
+    {
+        $lesson_name=$request->lesson_name;
+        $status=$request->status;
+
+        $check_data=Question::where('lesson_name',$lesson_name)
+            ->where('lesson_name',$lesson_name)
+            ->where('id','<>',$id)
+            ->first();
+            // dd($check_data);
+        if($check_data==null){
+            $lesson= Question::find($id);
+            $lesson->lesson_name=$request->lesson_name;
+            $lesson->status=$request->status;
+            if ($request->hasFile("image")) {
+                $file = $request->image->getClientOriginalName();
+                $day = date("Y-m-d");
+                $file_custom = $day . "_" . $file;
+                $file_custom =
+                    "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+                $lesson->image = $file_custom;
+                $request->image->move("upload/", $file_custom);
+            }
+            $lesson->save();
+            return redirect('admin/lesson');
+
+        }
+        else{
+            Session::put('lesson_name',$lesson_name);
+            Session::put('image',$image);
+            return back()->with('error','Thông tin không hợp lệ vui lòng kiểm tra lại');
+        }
+    }
+
+    public function deleteQuestion(Request $request, $id)
+    {
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
+        $data_lesson=Question::find($id);
+        $data_lesson->is_active = 0;
+        $data_lesson->save();
+        return redirect('admin/lesson')->with('success', 'Question deleted successfully!');
+    }
+
+    public function fileImport(Request $request) 
+    {
+        Excel::import(new QuestionImports, $request->file('file')->getRealPath());
+        return back();
     }
 }

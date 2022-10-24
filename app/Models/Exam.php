@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\User;
 
-class Course extends Model
+class Exam extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -25,9 +25,8 @@ class Course extends Model
      *
      * @var array<int, string>
      */
-    protected $table = "tbl_course";
+    protected $table = "tbl_exam";
     protected $primaryKey = 'id';
-    protected $fillable = ['user_id'];
     
     protected $hidden = [
         'password',
@@ -43,8 +42,4 @@ class Course extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    public function users()
-    {
-        return $this->belongsTo(User::class, "user_id", "id");
-    }
 }

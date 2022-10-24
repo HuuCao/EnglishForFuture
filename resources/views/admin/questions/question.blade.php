@@ -385,7 +385,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Danh sách bài viết</h4>
+						<h4 class="page-title">Danh sách câu hỏi</h4>
 					</div>
 					
 					@if ($message = Session::get('success'))
@@ -398,10 +398,20 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">{{Session::get('soluong')}} Blog</h4>
+									<h4 class="card-title">{{Session::get('soluong')}} Câu hỏi</h4>
 								</div>
 								<div class="button-add">
 									<a href="{{asset('admin/blog/add')}}" type="button" class="btn btn-success pull-right mr-3 mt-3">Thêm mới</a>
+									<form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
+										@csrf
+										<div class="form-group md-3" style="max-width: 500px;">
+											<div class="custom-file">
+												<input type="file" name="file" class="custom-file-input" id="customFile" required>
+												<label class="custom-file-label" for="customFile">Chọn file thêm câu hỏi</label>
+											</div>
+										</div>
+										<button class="btn btn-primary" style="max-width: 500px;">Thêm</button>
+									</form>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
@@ -409,37 +419,44 @@
 											<thead>
 												<tr>
 													<th>STT</th>
-													<th>Tên</th>
-													<th>Nội dung</th>
-													<th>Hình ảnh</th>
+													<th>Tên câu hỏi</th>
+													<th>Đáp án a</th>
+													<th>Đáp án b</th>
+													<th>Đáp án c</th>
+													<th>Đáp án d</th>
+													<th>Đáp án đúng</th>
+													<th>Giải thích</th>
 													<th>Trạng thái</th>
-													<th>Action</th>
 												</tr>
 											</thead>
 											<tbody>
                                                 <?php
                                                     $i = 0;
                                                 ?>
-                                                @foreach ($data_blog as $blog)
+                                                @foreach ($data_question as $question)
                                                     <?php $i++ ?>
                                                     <tr>
                                                         <td>{{$i}}</td>
-                                                        <td>{{$blog->blog_name}}</td>
-                                                        <td>{{$blog->content}}</td>
-														<td><img style="width: 70%;" src="{{$blog->image}}"></td>
+                                                        <td>{{$question->question_name}}</td>
+                                                        <td>{{$question->answer_a}}</td>
+                                                        <td>{{$question->answer_b}}</td>
+                                                        <td>{{$question->answer_c}}</td>
+                                                        <td>{{$question->answer_d}}</td>
+                                                        <td>{{$question->correct_answer}}</td>
+                                                        <td>{{$question->explain}}</td>
                                                         <td>
-                                                            @if($blog->status==1)
-                                                                {{$blog->status = "On"}}
+                                                            @if($question->status==1)
+                                                                {{$question->status = "On"}}
                                                             @else
-                                                                {{$blog->status = "Off"}}
+                                                                {{$question->status = "Off"}}
                                                             @endif
                                                         </td>
                                                         <td>
                                                             <div class="form-button-action">
-                                                                <a type="submit" data-toggle="tooltip" href="{{asset('admin/blog/edit/'.$blog->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Course">
+                                                                <a type="submit" data-toggle="tooltip" href="{{asset('admin/question/edit/'.$question->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Question">
                                                                     <i class="fa fa-edit"></i>
 																</a>
-                                                                <a type="submit" data-toggle="tooltip" href="{{asset('admin/blog/delete/'.$blog->id)}}" name="delete" value="Delete" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                                                <a type="submit" data-toggle="tooltip" href="{{asset('admin/question/delete/'.$question->id)}}" name="delete" value="Delete" title="" class="btn btn-link btn-danger" data-original-title="Remove">
                                                                     <i class="fa fa-times"></i>
 																</a>
                                                             </div>
@@ -450,7 +467,6 @@
 										</table>
 									</div>
 								</div>
-                                {{-- {{ $data_user->links() }} --}}
 							</div>
 						</div>
 					</div>

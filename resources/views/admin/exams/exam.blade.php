@@ -420,7 +420,7 @@
                                                 <?php
                                                     $i = 0;
                                                 ?>
-                                                @foreach ($data_blog as $blog)
+                                                @foreach ($data_exam as $exam)
                                                     <?php $i++ ?>
                                                     <tr>
                                                         <td>{{$i}}</td>

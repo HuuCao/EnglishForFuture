@@ -361,6 +361,12 @@
 							</a>
 						</li>
 						<li class="nav-item">
+							<a href="{{asset('admin/exam')}}">
+								<i class="fa fa-table"></i>
+								<p>Kiểm tra</p>
+							</a>
+						</li>
+						<li class="nav-item">
 							<a href="{{asset('admin/blog')}}">
 								<i class="fa fa-table"></i>
 								<p>Blog</p>
