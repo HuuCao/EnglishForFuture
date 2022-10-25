@@ -35,7 +35,7 @@ class AdminController extends Controller
             return redirect('login');
         }
 
-        $data_user=DB::table('tbl_user')->where('is_active', 1)->get();
+        $data_user=User::with('courses')->where('is_active', 1)->get();
         Session::put('soluong',count(($data_user)));
         return view('admin.users.user', compact('data_user'));
     }
@@ -500,15 +500,20 @@ class AdminController extends Controller
         return redirect('admin/blog')->with('success', 'Blog deleted successfully!');
     }
 
-    // public function getAll($id)
-    // {
-    //     $user = User::where('id',$id)->first();
-    //     echo $user->username .'<br>';
-    //     $courses = $user->courses;
-    //     foreach ($courses as $course) {
-    //         echo($course->title. '<br>');
-    //     }
-    // }
+    public function getAll()
+    {
+        // $user = User::where('id',$id)->first();
+        // echo $user->username .'<br>';
+        // $courses = $user->courses;
+        // foreach ($courses as $course) {
+        //     echo($course->title. '<br>');
+        // }
+        $user = User::with('courses')->get();
+        foreach ($user->courses as $course) {
+            return $course->id;
+        }
+
+    }
 
 
     // ==================================== //
@@ -725,8 +730,55 @@ class AdminController extends Controller
     }
 
     public function fileImport(Request $request) 
+    // {
+    //     Excel::import(new QuestionImports, $request->file('file')->getRealPath());
+    //     return back();
+    // }
     {
-        Excel::import(new QuestionImports, $request->file('file')->getRealPath());
-        return back();
+        $this->validate($request, [
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
+        $imageSRC = array();
+        $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($request->file('file'));
+        $worksheet = $spreadsheet->getActiveSheet();
+        $worksheetArray = $worksheet->toArray();
+        array_shift($worksheetArray);
+
+        $worksheetArray = array_map('array_filter', $worksheetArray);
+        $worksheetArray = array_filter($worksheetArray);
+
+        foreach ($worksheetArray as $key => $value)
+        {
+            $worksheet = $spreadsheet->getActiveSheet();
+            if (isset($worksheet->getDrawingCollection()[$key])) {
+                $drawing = $worksheet->getDrawingCollection()[$key];
+
+                $zipReader = fopen($drawing->getPath(), 'r');
+                $imageContents = '';
+                while (!feof($zipReader)) {
+                    $imageContents .= fread($zipReader, 1024);
+                }
+                fclose($zipReader);
+                $extension = $drawing->getExtension();
+
+                $imageSRC[$drawing->getCoordinates()] = "data:image/jpeg;base64," . base64_encode($imageContents);
+            }
+        }
+
+        $import = new BulkImport($imageSRC);
+        Excel::import($import, $request->file('file'));
+
+        $excelError = $import->data['excel_error_key'];
+
+        array_shift($excelError);
+        $excelError = array_values($excelError);
+
+        $errorMessage = "";
+        if (!empty($excelError)) {
+            $errorMessage = "In excel may be some issue or blank data at rows " . implode(',', $excelError);
+        }
+
+        return back()->with('message', 'Excel Data Imported successfully. '.$errorMessage);
     }
 }

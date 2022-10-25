@@ -96,5 +96,5 @@ Route::group(['prefix' => '/admin'], function () {
         Route::get('/delete/{id}', [AdminController::class, 'deleteBlog']);
     }); 
 
-    Route::get('/userget/{id}', [AdminController::class, 'getAll']); 
+    Route::get('/userget', [AdminController::class, 'getAll']); 
 });

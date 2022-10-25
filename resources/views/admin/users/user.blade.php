@@ -414,6 +414,7 @@
 													<th>Email</th>
 													<th>Phone</th>
 													<th>Role</th>
+													<th>Khóa học</th>
 													<th>Ngày tạo</th>
 													<th>Action</th>
 												</tr>
@@ -439,6 +440,12 @@
                                                                 {{$user->role = "Giao viên"}}
                                                             @endif
                                                         </td>
+														<td>
+															{{-- @foreach ($user->courses as $data_course)
+																{{count($data_course->id)}}
+															@endforeach --}}
+															{{count($user->courses)}}
+														</td>
                                                         <td>{{$user->created_at}}</td>
                                                         <td>
                                                             <div class="form-button-action">
