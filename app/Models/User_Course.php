@@ -42,7 +42,12 @@ class User_Course extends Authenticatable
 
     public function users()
     {
-        return $this->belongsTo('App\Models\User', 'id_user', 'id');
+        return $this->hasMany(User::class, "user_id", "id");
+    }
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class, "course_id", "id");
     }
 
 }

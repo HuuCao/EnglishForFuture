@@ -415,7 +415,6 @@
 													<th>Phone</th>
 													<th>Role</th>
 													<th>Khóa học</th>
-													<th>Ngày tạo</th>
 													<th>Action</th>
 												</tr>
 											</thead>
@@ -425,6 +424,7 @@
                                                 ?>
                                                 @foreach ($data_user as $user)
                                                     <?php $i++ ?>
+													
                                                     <tr>
                                                         <td>{{$i}}</td>
                                                         <td>{{$user->first_name}}</td>
@@ -441,12 +441,10 @@
                                                             @endif
                                                         </td>
 														<td>
-															{{-- @foreach ($user->courses as $data_course)
-																{{count($data_course->id)}}
-															@endforeach --}}
-															{{count($user->courses)}}
+															@foreach ($user->courses as $data_course)
+																{{($data_course->title. ',')}}
+															@endforeach
 														</td>
-                                                        <td>{{$user->created_at}}</td>
                                                         <td>
                                                             <div class="form-button-action">
                                                                 <a type="submit" href="{{asset('admin/user/edit/'.$user->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">

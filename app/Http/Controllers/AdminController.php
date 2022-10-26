@@ -167,7 +167,7 @@ class AdminController extends Controller
             return redirect('login');
         }
 
-        $data_course=Course::where('is_active', 1)->get();
+        $data_course=Course::with('lessons')->where('is_active', 1)->get();
         Session::put('soluong',count(($data_course)));
         return view('admin.courses.course', compact('data_course'));
     }
@@ -319,6 +319,7 @@ class AdminController extends Controller
         }
 
         $lesson->lesson_name=$request->lesson_name;
+        $lesson->content=$request->content;
         if ($request->hasFile("image")) {
             $file = $request->image->getClientOriginalName();
             $day = date("Y-m-d");
@@ -500,15 +501,15 @@ class AdminController extends Controller
         return redirect('admin/blog')->with('success', 'Blog deleted successfully!');
     }
 
-    public function getAll()
-    {
-        $user = User::with('courses')->get();
-        foreach ($user->courses as $course)
-        {
-            return $course->id;
-        }
+    // public function getAll()
+    // {
+    //     $user = User::with('courses')->get();
+    //     foreach ($user->courses as $course)
+    //     {
+    //         return $course->id;
+    //     }
 
-    }
+    // }
 
 
     // ==================================== //
@@ -522,8 +523,9 @@ class AdminController extends Controller
             return redirect('login');
         }
 
-        $data_exam=Exam::where('is_active', 1)->get();
+        $data_exam=Exam::with('users')->with('lessons')->with('questions')->where('is_active', 1)->get();
         Session::put('soluong',count(($data_exam)));
+        // return $data_exam;
         return view('admin.exams.exam', compact('data_exam'));
     }
 
@@ -533,7 +535,7 @@ class AdminController extends Controller
         {
             return redirect('login');
         }
-        return view("admin.lessons.add");
+        return view("admin.exams.add");
     }
     
     public function postAddExam(Request $request)
@@ -726,7 +728,7 @@ class AdminController extends Controller
 
     public function fileImport(Request $request) 
     {
-        Excel::import(new QuestionImports, $request->file('file')->getRealPath());
-        return back();
+        Excel::import(new QuestionImports, $request->file('file'));
+        // return back();
     }
 }

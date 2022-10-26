@@ -42,4 +42,14 @@ class Lesson extends Model
         'email_verified_at' => 'datetime',
     ];
 
+    public function courses()
+    {
+        return $this->belongsTo(Course::class, "course_id", "id");
+    }
+
+    public function exams()
+    {
+        return $this->hasMany(Exam::class, "lesson_id", "id");
+    }
+
 }

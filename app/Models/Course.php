@@ -43,8 +43,13 @@ class Course extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    public function users()
+    public function user_course()
     {
-        return $this->belongsTo(User::class, "user_id", "id");
+        return $this->belongsTo(User_Course::class, "course_id", "id");
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class, "course_id", "id");
     }
 }

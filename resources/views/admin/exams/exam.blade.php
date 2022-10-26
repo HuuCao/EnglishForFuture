@@ -385,7 +385,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Danh sách bài viết</h4>
+						<h4 class="page-title">Danh sách bài kiểm tra</h4>
 					</div>
 					
 					@if ($message = Session::get('success'))
@@ -398,7 +398,7 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">{{Session::get('soluong')}} Blog</h4>
+									<h4 class="card-title">{{Session::get('soluong')}} Bài kiểm tra</h4>
 								</div>
 								<div class="button-add">
 									<a href="{{asset('admin/blog/add')}}" type="button" class="btn btn-success pull-right mr-3 mt-3">Thêm mới</a>
@@ -409,9 +409,11 @@
 											<thead>
 												<tr>
 													<th>STT</th>
-													<th>Tên</th>
-													<th>Nội dung</th>
-													<th>Hình ảnh</th>
+													<th>Tên bài kiểm tra</th>
+													<th>Bài giảng</th>
+													<th>Người tạo</th>
+													<th>Ngày tạo</th>
+													<th>Số lượng câu hỏi</th>
 													<th>Trạng thái</th>
 													<th>Action</th>
 												</tr>
@@ -424,22 +426,24 @@
                                                     <?php $i++ ?>
                                                     <tr>
                                                         <td>{{$i}}</td>
-                                                        <td>{{$blog->blog_name}}</td>
-                                                        <td>{{$blog->content}}</td>
-														<td><img style="width: 70%;" src="{{$blog->image}}"></td>
+                                                        <td>{{$exam->exam_name}}</td>
+                                                        <td>{{$exam->lessons->lesson_name}}</td>
+                                                        <td>{{$exam->users->last_name}}</td>
+                                                        <td>{{$exam->created_at}}</td>
+                                                        <td>{{count($exam->questions)}}</td>
                                                         <td>
-                                                            @if($blog->status==1)
-                                                                {{$blog->status = "On"}}
+                                                            @if($exam->status==1)
+                                                                {{$exam->status = "On"}}
                                                             @else
-                                                                {{$blog->status = "Off"}}
+                                                                {{$exam->status = "Off"}}
                                                             @endif
                                                         </td>
                                                         <td>
                                                             <div class="form-button-action">
-                                                                <a type="submit" data-toggle="tooltip" href="{{asset('admin/blog/edit/'.$blog->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Course">
+                                                                <a type="submit" data-toggle="tooltip" href="{{asset('admin/exam/edit/'.$exam->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Course">
                                                                     <i class="fa fa-edit"></i>
 																</a>
-                                                                <a type="submit" data-toggle="tooltip" href="{{asset('admin/blog/delete/'.$blog->id)}}" name="delete" value="Delete" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                                                <a type="submit" data-toggle="tooltip" href="{{asset('admin/exam/delete/'.$exam->id)}}" name="delete" value="Delete" title="" class="btn btn-link btn-danger" data-original-title="Remove">
                                                                     <i class="fa fa-times"></i>
 																</a>
                                                             </div>

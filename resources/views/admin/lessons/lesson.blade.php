@@ -410,6 +410,7 @@
 												<tr>
 													<th>STT</th>
 													<th>Tên</th>
+													<th>Nội dung bài giảng</th>
 													<th>Hình ảnh</th>
 													<th>Trạng thái</th>
 													<th>Action</th>
@@ -424,6 +425,7 @@
                                                     <tr>
                                                         <td>{{$i}}</td>
                                                         <td>{{$lesson->lesson_name}}</td>
+                                                        <td>{{$lesson->content}}</td>
                                                         <td><img style="width: 70%;" src="{{$lesson->image}}"></td>
                                                         <td>
                                                             @if($lesson->status==1)

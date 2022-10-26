@@ -410,10 +410,10 @@
 												<tr>
 													<th>STT</th>
 													<th>Tên</th>
-													<th>Tiêu đề</th>
 													<th>Mô tả</th>
 													<th>Thời gian</th>
 													<th>Giá</th>
+													<th>Số bài giảng</th>
 													<th>Hình ảnh</th>
 													<th>Trạng thái</th>
 													<th>Action</th>
@@ -425,13 +425,19 @@
                                                 ?>
                                                 @foreach ($data_course as $course)
                                                     <?php $i++ ?>
+													{{-- {{dd($course->lessons)}}; --}}
                                                     <tr>
                                                         <td>{{$i}}</td>
                                                         <td>{{$course->caption}}</td>
-                                                        <td>{{$course->title}}</td>
                                                         <td>{{$course->description}}</td>
                                                         <td>{{$course->time}} Tuần</td>
 														<td>{{$course->price}}</td>
+														<td>
+															{{-- @foreach ($course->lessons as $data_lesson)
+																{{($data_lesson->lession_name)}}
+															@endforeach --}}
+															{{count($course->lessons)}}
+														</td>
 														<td><img style="width: 70%;" src="{{$course->image}}"></td>
                                                         <td>
                                                             @if($course->status==1)

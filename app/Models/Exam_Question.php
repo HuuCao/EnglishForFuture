@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\User;
 
-class Exam extends Model
+class Exam_Question extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -25,7 +23,7 @@ class Exam extends Model
      *
      * @var array<int, string>
      */
-    protected $table = "tbl_exam";
+    protected $table = "tbl_exam_question";
     protected $primaryKey = 'id';
     
     protected $hidden = [
@@ -42,19 +40,14 @@ class Exam extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    public function lessons()
+    public function exams()
     {
-        return $this->belongsTo(Lesson::class, "lesson_id", "id");
-    }
-
-    public function users()
-    {
-        return $this->belongsTo(User::class, "user_id", "id");
+        return $this->hasMany(Exam::class, "exam_id", "id");
     }
 
     public function questions()
     {
-        return $this->belongsToMany(Question::class, "tbl_exam_question", "exam_id", "question_id");
+        return $this->hasMany(Question::class, "question_id", "id");
     }
 
 }

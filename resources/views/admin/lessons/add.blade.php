@@ -398,6 +398,14 @@
                                </div>
                             </div>
                             <div class="form-group">
+                               <label for="lesson_name" class="cols-sm-2 control-label">Tên bài giảng</label>
+                               <div class="cols-sm-10">
+                                  <div class="input-group">
+                                    <textarea class="form-control" name="content" required placeholder="Nhập nội dung bài giảng" rows="5">{{Session::get('content')}}</textarea>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="form-group">
                                <label for="image" class="cols-sm-2 control-label">Hình ảnh</label>
                                <div class="cols-sm-10">
                                   <div class="input-group">

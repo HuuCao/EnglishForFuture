@@ -56,4 +56,8 @@ class Question extends Model
         'email_verified_at' => 'datetime',
     ];
 
+    public function exam_question()
+    {
+        return $this->belongsTo(Exam_Question::class, "exam_id", "id");
+    }
 }
