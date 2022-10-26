@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-use DB;
-use Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -114,7 +114,7 @@ class HomeController extends Controller
 
     public function course()
     {
-        $course = DB::table('course')->get();
+        $course =DB::table('course')->get();
         return view('home.course',compact('course'));
     }
 

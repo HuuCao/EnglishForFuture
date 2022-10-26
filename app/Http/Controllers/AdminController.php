@@ -9,9 +9,9 @@ use App\Models\Exam;
 use App\Models\Question;
 use App\Models\User_Course;
 use App\Imports\QuestionImports;
-use DB;
-use Session;
-use Excel;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Excel;
 
 use Illuminate\Http\Request;
 
@@ -267,7 +267,7 @@ class AdminController extends Controller
             Session::put('description',$description);
             Session::put('price',$price);
             Session::put('time',$time);
-            Session::put('image',$image);
+            // Session::put('image',$image);
             return back()->with('error','Thông tin không hợp lệ vui lòng kiểm tra lại');
         }
     }
@@ -373,7 +373,7 @@ class AdminController extends Controller
         }
         else{
             Session::put('lesson_name',$lesson_name);
-            Session::put('image',$image);
+            // Session::put('image',$image);
             return back()->with('error','Thông tin không hợp lệ vui lòng kiểm tra lại');
         }
     }
@@ -483,7 +483,7 @@ class AdminController extends Controller
         else{
             Session::put('blog_name',$blog_name);
             Session::put('content',$content);
-            Session::put('image',$image);
+            // Session::put('image',$image);
             return back()->with('error','Thông tin không hợp lệ vui lòng kiểm tra lại');
         }
     }
@@ -600,7 +600,7 @@ class AdminController extends Controller
         }
         else{
             Session::put('lesson_name',$lesson_name);
-            Session::put('image',$image);
+            // Session::put('image',$image);
             return back()->with('error','Thông tin không hợp lệ vui lòng kiểm tra lại');
         }
     }
@@ -707,7 +707,7 @@ class AdminController extends Controller
         }
         else{
             Session::put('lesson_name',$lesson_name);
-            Session::put('image',$image);
+            // Session::put('image',$image);
             return back()->with('error','Thông tin không hợp lệ vui lòng kiểm tra lại');
         }
     }
