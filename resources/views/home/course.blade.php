@@ -48,8 +48,8 @@
         <div class="row align-items-center">
           <div class="col-lg-9 d-none d-lg-block">
             <a href="#" class="small mr-3"><span class="icon-question-circle-o mr-2"></span> Have a questions?</a> 
-            <a href="#" class="small mr-3"><span class="icon-phone2 mr-2"></span> 10 20 123 456</a> 
-            <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> info@mydomain.com</a> 
+            <a href="#" class="small mr-3"><span class="icon-phone2 mr-2"></span> (+84 798 012 416)</a> 
+            <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> caominhhuu2108@gmail.com</a> 
           </div>
           <div class="col-lg-3 text-right">
             <a href="login.html" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
@@ -165,7 +165,7 @@
                         </div>
                     </div>
                 </div>
-@endforeach
+                @endforeach
 
             </div>
         </div>

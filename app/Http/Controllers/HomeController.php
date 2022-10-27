@@ -10,7 +10,9 @@ class HomeController extends Controller
 {
     public function getHome()
     {
-        return view('home.index');
+        $course =DB::table('tbl_course')->get();
+
+        return view('home.index',compact('course'));
     }
 
     public function login()
@@ -114,7 +116,7 @@ class HomeController extends Controller
 
     public function course()
     {
-        $course =DB::table('course')->get();
+        $course =DB::table('tbl_course')->get();
         return view('home.course',compact('course'));
     }
 

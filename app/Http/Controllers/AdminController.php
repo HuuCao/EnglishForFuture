@@ -11,9 +11,9 @@ use App\Models\User_Course;
 use App\Imports\QuestionImports;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use Maatwebsite\Excel\Excel;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -729,6 +729,6 @@ class AdminController extends Controller
     public function fileImport(Request $request) 
     {
         Excel::import(new QuestionImports, $request->file('file'));
-        // return back();
+        return back()->with('mess', "Upload file thành công!");
     }
 }
