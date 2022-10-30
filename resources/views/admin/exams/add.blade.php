@@ -466,7 +466,7 @@
 
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="{{asset('public/admin/js/setting-demo.js')}}"></script>
-	<script src="{{asset('public/admin/js/demo.js')}}"></script>
+	
 	<script >
 		$(document).ready(function() {
 			$('#basic-datatables').DataTable({

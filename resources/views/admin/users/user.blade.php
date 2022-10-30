@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Tables - Atlantis Lite Bootstrap 4 Admin Dashboard</title>
+	<title>User | EnglishForFuture</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-    <link rel="stylesheet" href="{{asset('public/admin/img/icon.ico')}}">
+    {{-- <link rel="stylesheet" href="{{asset('public/admin/img/icon.ico')}}"> --}}
+	<link rel="shortcut icon" type="image/png" href="{{asset('public/admin/img/icon.ico')}}"/>
 
 	<!-- Fonts and icons -->
 	<script src="{{asset('public/admin/js/core/jquery.3.2.1.min.js')}}"></script>
@@ -536,8 +537,8 @@
 
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="{{asset('public/admin/js/setting-demo.js')}}"></script>
-	<script src="{{asset('public/admin/js/demo.js')}}"></script>
-	<script >
+	{{-- <script src="{{asset('public/admin/js/demo.js')}}"></script> --}}
+	{{-- <script >
 		$(document).ready(function() {
 			$('#basic-datatables').DataTable({
 			});
@@ -584,6 +585,6 @@
 
 			});
 		});
-	</script>
+	</script> --}}
 </body>
 </html>
