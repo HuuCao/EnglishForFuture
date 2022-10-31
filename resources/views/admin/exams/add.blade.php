@@ -362,7 +362,7 @@
 						<li class="nav-item">
 							<a href="{{asset('admin/exam')}}">
 								<i class="fa fa-table"></i>
-								<p>Kiểm tra</p>
+								<p>Đề kiểm tra</p>
 							</a>
 						</li>
 						<li class="nav-item">
@@ -390,28 +390,36 @@
                         <form class="form-horizontal" method="post" action="#" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-								<label for="blog_name" class="cols-sm-2 control-label">Tên Blog</label>
+								<label for="blog_name" class="cols-sm-2 control-label">Tên đề kiểm tra</label>
 								<div class="cols-sm-10">
-										<div class="input-group">
-											<input type="text" class="form-control" name="blog_name" id="blog_name" placeholder="Nhập tên blog" required value="{{Session::get('blog_name')}}"/>
-										</div>
+									<div class="input-group">
+										<input type="text" class="form-control" name="blog_name" id="blog_name" placeholder="Nhập tên đề kiểm tra" required value="{{Session::get('blog_name')}}"/>
+									</div>
 								</div>
                             </div>
                             <div class="form-group">
-                               <label for="content" class="cols-sm-2 control-label">Nội dung</label>
+                               <label for="content" class="cols-sm-2 control-label">Loại đề</label>
                                <div class="cols-sm-10">
 									<div class="input-group">
-										<textarea class="form-control" name="content" placeholder="Nhập nội dung" required rows="5">{{Session::get('content')}}</textarea>
+										<select class="js-select2-multi form-control" required id="type" name="type">
+											<option value="" selected>Chọn loại đề</option>
+											<option value="0">Đề thi</option>
+											<option value="1">Đề kiểm tra</option>
+										</select>
 									</div>
                                </div>
                             </div>
-                            
                             <div class="form-group">
-                               <label for="iamge" class="cols-sm-2 control-label">Hình ảnh</label>
+                               <label for="iamge" class="cols-sm-2 control-label">Bài giảng</label>
                                <div class="cols-sm-10">
-                                  <div class="input-group">
-                                     <input type="file" class="form-control" name="image" id="image" required value="{{Session::get('image')}}"/>
-                                  </div>
+									<div class="input-group">
+										<select  name="name_topic" class='js-select2-multi form-control' >
+											<option value="" @if(Session::get('id')==null) selected @endif >Chọn bài giảng</option>
+											@foreach($data_lesson as $al)
+												<option @if(Session::get('lesson_name')==$al->id) selected @endif value="{{$al->id}}"> {{$al->lesson_name}}</option>
+											@endforeach
+										</select>
+									</div>
                                </div>
                             </div>
                            <div class="form-group pull-right">
@@ -467,7 +475,7 @@
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="{{asset('public/admin/js/setting-demo.js')}}"></script>
 	
-	<script >
+	{{-- <script >
 		$(document).ready(function() {
 			$('#basic-datatables').DataTable({
 			});
@@ -514,6 +522,6 @@
 
 			});
 		});
-	</script>
+	</script> --}}
 </body>
 </html>

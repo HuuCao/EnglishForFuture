@@ -535,31 +535,25 @@ class AdminController extends Controller
         {
             return redirect('login');
         }
-        return view("admin.exams.add");
+        $data_lesson=DB::table('tbl_lesson')->where('status',1)->get();
+        return view("admin.exams.add", compact('data_lesson'));
     }
     
     public function postAddExam(Request $request)
     {
-        $lesson = new Exam;
+        $exam = new Exam;
 
-        $data=Exam::where('lesson_name',$request->lesson_name)->where('is_active', 1)->first();
+        $data=Exam::where('exam_name',$request->exam_name)->where('is_active', 1)->first();
         if($data!=null){
-            return redirect('admin/lesson/add')->with('error','Tên bài giảng đã tồn tại');
+            return redirect('admin/exam/add')->with('error','Tên bài kiểm tra đã tồn tại');
         }
 
-        $lesson->lesson_name=$request->lesson_name;
-        if ($request->hasFile("image")) {
-            $file = $request->image->getClientOriginalName();
-            $day = date("Y-m-d");
-            $file_custom = $day . "_" . $file;
-            $file_custom =
-                "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
-            $lesson->image = $file_custom;
-            $request->image->move("upload/", $file_custom);
-        }
-        $lesson->save();
+        $exam->exam_name=$request->exam_name;
+        $exam->type=$request->type;
 
-        return redirect('admin/lesson');
+        $exam->save();
+
+        return redirect('admin/exam');
     }
 
     public function editExam($id)

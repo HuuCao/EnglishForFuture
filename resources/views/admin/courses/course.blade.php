@@ -23,9 +23,11 @@
 	<link rel="stylesheet" href="{{asset('public/admin/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{asset('public/admin/css/atlantis.min.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="{{asset('public/admin/css/style.css')}}">
+
 </head>
 <body>
 	<div class="wrapper">
@@ -425,17 +427,13 @@
                                                 ?>
                                                 @foreach ($data_course as $course)
                                                     <?php $i++ ?>
-													{{-- {{dd($course->lessons)}}; --}}
                                                     <tr>
                                                         <td>{{$i}}</td>
                                                         <td>{{$course->caption}}</td>
                                                         <td>{{$course->description}}</td>
-                                                        <td>{{$course->time}} Tuần</td>
+                                                        <td>{{$course->time. "tuần"}}</td>
 														<td>{{$course->price}}</td>
 														<td>
-															{{-- @foreach ($course->lessons as $data_lesson)
-																{{($data_lesson->lession_name)}}
-															@endforeach --}}
 															{{count($course->lessons)}}
 														</td>
 														<td><img style="width: 70%;" src="{{$course->image}}"></td>
@@ -538,6 +536,8 @@
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="{{asset('public/admin/js/setting-demo.js')}}"></script>
 	
+	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
 	<script >
 		$(document).ready(function() {
 			$('#basic-datatables').DataTable({

@@ -362,7 +362,7 @@
 						<li class="nav-item">
 							<a href="{{asset('admin/exam')}}">
 								<i class="fa fa-table"></i>
-								<p>Kiểm tra</p>
+								<p>Đề kiểm tra</p>
 							</a>
 						</li>
 						<li class="nav-item">
@@ -385,7 +385,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Danh sách bài kiểm tra</h4>
+						<h4 class="page-title">Danh sách đề kiểm tra</h4>
 					</div>
 					
 					@if ($message = Session::get('success'))
@@ -398,10 +398,10 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">{{Session::get('soluong')}} Bài kiểm tra</h4>
+									<h4 class="card-title">{{Session::get('soluong')}} Đề kiểm tra</h4>
 								</div>
 								<div class="button-add">
-									<a href="{{asset('admin/blog/add')}}" type="button" class="btn btn-success pull-right mr-3 mt-3">Thêm mới</a>
+									<a href="{{asset('admin/exam/add')}}" type="button" class="btn btn-success pull-right mr-3 mt-3">Thêm mới</a>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
@@ -412,7 +412,7 @@
 													<th>Tên bài kiểm tra</th>
 													<th>Bài giảng</th>
 													<th>Người tạo</th>
-													<th>Ngày tạo</th>
+													<th>Loại đề</th>
 													<th>Số lượng câu hỏi</th>
 													<th>Trạng thái</th>
 													<th>Action</th>
@@ -429,7 +429,13 @@
                                                         <td>{{$exam->exam_name}}</td>
                                                         <td>{{$exam->lessons->lesson_name}}</td>
                                                         <td>{{$exam->users->last_name}}</td>
-                                                        <td>{{$exam->created_at}}</td>
+                                                        <td>
+															@if($exam->type==0)
+                                                                {{$exam->type = "Đề thi"}}
+                                                            @else
+                                                                {{$exam->type = "Đề kiểm tra"}}
+                                                            @endif
+														</td>
                                                         <td>{{count($exam->questions)}}</td>
                                                         <td>
                                                             @if($exam->status==1)
@@ -530,7 +536,7 @@
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="{{asset('public/admin/js/setting-demo.js')}}"></script>
 	
-	<script >
+	{{-- <script >
 		$(document).ready(function() {
 			$('#basic-datatables').DataTable({
 			});
@@ -577,6 +583,6 @@
 
 			});
 		});
-	</script>
+	</script> --}}
 </body>
 </html>

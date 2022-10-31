@@ -410,11 +410,10 @@
 											<thead>
 												<tr>
 													<th>STT</th>
-													<th>First Name</th>
-													<th>Last Name</th>
+													<th>Họ & tên</th>
 													<th>Email</th>
-													<th>Phone</th>
-													<th>Role</th>
+													<th>Số điện thoại</th>
+													<th>Vai trò</th>
 													<th>Khóa học</th>
 													<th>Action</th>
 												</tr>
@@ -428,19 +427,16 @@
 													
                                                     <tr>
                                                         <td>{{$i}}</td>
-                                                        <td>{{$user->first_name}}</td>
-                                                        <td>{{$user->last_name}}</td>
+                                                        <td>{{$user->first_name. " " .$user->last_name}}</td>
                                                         <td>{{$user->email}}</td>
                                                         <td>{{$user->phone}}</td>
-                                                        <td>
-                                                            @if($user->role==1)
-                                                                {{$user->role = "Admin"}}
-                                                            @elseif($user->role==2)
-                                                                {{$user->role = "Học viên"}}
-                                                            @else
-                                                                {{$user->role = "Giao viên"}}
-                                                            @endif
-                                                        </td>
+														@if($user->role==1)
+															<td style="font-weight: 700; color: #FF0000">{{$user->role = "Admin"}}</td>
+														@elseif($user->role==2)
+															<td style="font-weight: 700; color: #00CD00">{{$user->role = "Học viên"}}</td>
+														@else
+															<td style="font-weight: 700; color: #0000FF">{{$user->role = "Giao viên"}}</td>
+														@endif
 														<td>
 															@foreach ($user->courses as $data_course)
 																{{($data_course->title. ',')}}
