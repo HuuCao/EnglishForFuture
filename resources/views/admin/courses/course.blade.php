@@ -410,15 +410,14 @@
 										<table id="basic-datatables" class="display table table-striped table-hover" >
 											<thead>
 												<tr>
-													<th>STT</th>
-													<th>Tên</th>
-													<th>Mô tả</th>
-													<th>Thời gian</th>
-													<th>Giá</th>
-													<th>Số bài giảng</th>
-													<th>Hình ảnh</th>
-													<th>Trạng thái</th>
-													<th>Action</th>
+													<th style="text-align: center">STT</th>
+													<th style="text-align: center">Tên</th>
+													<th style="text-align: center">Thời gian</th>
+													<th style="text-align: center">Giá</th>
+													<th style="text-align: center">Số bài giảng</th>
+													<th style="text-align: center; width: 400px;">Hình ảnh</th>
+													<th style="text-align: center">Trạng thái</th>
+													<th style="text-align: center">Action</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -430,14 +429,15 @@
                                                     <tr>
                                                         <td>{{$i}}</td>
                                                         <td>{{$course->caption}}</td>
-                                                        <td>{{$course->description}}</td>
-                                                        <td>{{$course->time. "tuần"}}</td>
-														<td>{{$course->price}}</td>
-														<td>
+                                                        <td>{{$course->time. " tuần"}}</td>
+														<td style="text-align: center">{{$course->price}}</td>
+														<td style="text-align: center">
 															{{count($course->lessons)}}
 														</td>
-														<td><img style="width: 70%;" src="{{$course->image}}"></td>
-                                                        <td>
+														<td style="width: 400px; text-align: center;">
+															<img style="width: 50%; margin-top: 4px; margin-bottom: 4px;" src="{{$course->image}}">
+														</td>
+                                                        <td style="text-align: center">
                                                             @if($course->status==1)
                                                                 {{$course->status = "On"}}
                                                             @else
@@ -538,7 +538,7 @@
 	
 	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
-	<script >
+	{{-- <script >
 		$(document).ready(function() {
 			$('#basic-datatables').DataTable({
 			});
@@ -585,6 +585,6 @@
 
 			});
 		});
-	</script>
+	</script> --}}
 </body>
 </html>

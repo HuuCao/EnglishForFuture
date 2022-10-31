@@ -14,6 +14,7 @@ class QuestionImports implements ToModel
     */
     public function model(array $row)
     {
+        // dd($row['image']);
         return new Question([
             'id' => $row[0],
             'question_name' => $row[1],

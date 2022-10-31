@@ -71,7 +71,7 @@
       <div class="container">
         <div class="d-flex align-items-center">
           <div class="site-logo">
-            <a href="" class="d-block">
+            <a href="{{asset('home')}}" class="d-block">
               <img src="{{asset('public/home/images/logo.jpg')}}" alt="Image" class="img-fluid">
             </a>
           </div>
@@ -92,7 +92,7 @@
                   <a href="admissions.html" class="nav-link text-left">Admissions</a>
                 </li>
                 <li>
-                  <a href="courses.html" class="nav-link text-left">Courses</a>
+                  <a href="{{asset('course')}}" class="nav-link text-left">Courses</a>
                 </li>
                 <li>
                     <a href="contact.html" class="nav-link text-left">Contact</a>
@@ -215,13 +215,13 @@
                     <div class="course-1-item">
                         <figure class="thumnail">
                         <a href="course-single.html"><img src="{{$c->image}}" alt="Image" class="img-fluid"></a>
-                        <div class="price">${{$c->price}}</div>
+                        {{-- <div class="price">${{$c->price}}</div> --}}
                         <div class="category"><h3>{{$c->caption}}</h3></div>  
                         </figure>
                         <div class="course-1-content pb-4">
                         <h2>{{$c->title}}</h2>
                         <p class="desc mb-4">{{$c->description}}</p>
-                        <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Enroll In This Course</a></p>
+                        <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Xem bài giảng</a></p>
                         </div>
                     </div>
                 </div>

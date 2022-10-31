@@ -52,8 +52,13 @@
             <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> caominhhuu2108@gmail.com</a> 
           </div>
           <div class="col-lg-3 text-right">
-            <a href="login.html" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
-            <a href="register.html" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Register</a>
+            @if(Session::get('username')==null)
+            <a href="{{asset('login')}}" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
+            <a href="register" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Register</a>
+            @else
+            <p > {{Session::get('username')}}</p>
+            <a href="{{asset('logout')}}" class="small mr-3"><span class="icon-unlock-alt"></span> Log Out</a>
+            @endif
           </div>
         </div>
       </div>
@@ -71,7 +76,7 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li>
-                  <a href="index.html" class="nav-link text-left">Home</a>
+                  <a href="{{asset('home')}}" class="nav-link text-left">Home</a>
                 </li>
                 <li class="has-children">
                   <a href="about.html" class="nav-link text-left">About Us</a>
@@ -124,7 +129,7 @@
 
     <div class="custom-breadcrumns border-bottom">
       <div class="container">
-        <a href="index.html">Home</a>
+        <a href="{{asset('home')}}">Home</a>
         <span class="mx-3 icon-keyboard_arrow_right"></span>
         <span class="current">Courses</span>
       </div>
@@ -137,31 +142,15 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="course-1-item">
                         <figure class="thumnail">
-                        <a href="course-single.html"><img src="{{asset('public/home/images/course_1.jpg')}}" alt="Image" class="img-fluid"></a>
-                        <div class="price">${{$c->price}}</div>
+                        <a href="course-single.html"><img src="{{$c->image}}" alt="Image" class="img-fluid"></a>
                         <div class="category"><h3>{{$c->caption}}</h3></div>  
                         </figure>
                         <div class="course-1-content pb-4">
                         <h2>{{$c->title}}</h2>
                         <div class="rating text-center mb-3">
-
-                            <?php
-                                $sosao=5-$c->star;
-                                ?>
-                            @for($i=1 ; $i<=$c->star; $i++)
-                                     <span class="icon-star2 text-warning"></span>
-                                
-                            @endfor
-                            @if($sosao>0)
-                            @for($i=1 ; $i<=$sosao; $i++)
-
-                                <span class="icon-star2 "></span>
-                                @endfor
-
-                            @endif
                         </div>
                         <p class="desc mb-4">{{$c->description}}</p>
-                        <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Enroll In This Course</a></p>
+                        <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Xem bài giảng</a></p>
                         </div>
                     </div>
                 </div>

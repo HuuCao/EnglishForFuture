@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Session;
 
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Jobs\QueueImport;
 
 class AdminController extends Controller
 {

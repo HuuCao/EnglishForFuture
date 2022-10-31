@@ -427,6 +427,7 @@
 													<th>Đáp án đúng</th>
 													<th>Giải thích</th>
 													<th>Trạng thái</th>
+													<th>Action</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -542,7 +543,7 @@
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="{{asset('public/admin/js/setting-demo.js')}}"></script>
 	
-	<script >
+	{{-- <script >
 		$(document).ready(function() {
 			$('#basic-datatables').DataTable({
 			});
@@ -589,6 +590,6 @@
 
 			});
 		});
-	</script>
+	</script> --}}
 </body>
 </html>

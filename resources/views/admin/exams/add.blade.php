@@ -422,6 +422,17 @@
 									</div>
                                </div>
                             </div>
+                            <div class="form-group">
+                               <label for="iamge" class="cols-sm-2 control-label">Bài giảng</label>
+                               <div class="cols-sm-10">
+									<div class="input-group">
+										<form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
+											{{-- <label for="input-b4b">Disabled Input</label> --}}
+											<input id="input-b2" name="input-b2" type="file" class="form-control" data-show-preview="false">
+										</form>
+									</div>
+                               </div>
+                            </div>
                            <div class="form-group pull-right">
                                <a href="{{asset('admin/blog')}}" style="color: white" type="submit" class="btn btn-danger ">Hủy</a>
                                <button style="color: white" type="submit" class="btn btn-primary ">Lưu</button>
