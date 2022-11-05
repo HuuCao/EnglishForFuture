@@ -37,6 +37,7 @@ class Question extends Model
         'correct_answer',
         'explain',
         'correct_answer',
+        'exam_id',
     ];
 
     protected $table = "tbl_question";
@@ -56,8 +57,8 @@ class Question extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    public function exam_question()
+    public function exams()
     {
-        return $this->belongsTo(Exam_Question::class, "exam_id", "id");
+        return $this->belongsTo(Exam::class, "exam_id", "id");
     }
 }

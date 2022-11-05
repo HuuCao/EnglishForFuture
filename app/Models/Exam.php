@@ -54,7 +54,7 @@ class Exam extends Model
 
     public function questions()
     {
-        return $this->belongsToMany(Question::class, "tbl_exam_question", "exam_id", "question_id");
+        return $this->hasMany(Question::class, "exam_id", "id");
     }
 
 }

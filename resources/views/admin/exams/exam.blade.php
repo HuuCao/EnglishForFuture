@@ -427,8 +427,16 @@
                                                     <tr>
                                                         <td>{{$i}}</td>
                                                         <td>{{$exam->exam_name}}</td>
-                                                        <td>{{$exam->lessons->lesson_name}}</td>
-                                                        <td>{{$exam->users->last_name}}</td>
+                                                        <td>
+															@if ($exam->lesson_id == null)
+															@else {{$exam->lessons->lesson_name}}
+															@endif
+														</td>
+                                                        <td>
+															@if ($exam->user_id == null)
+															@else{{$exam->users->last_name}}
+															@endif
+														</td>
                                                         <td>
 															@if($exam->type==0)
                                                                 {{$exam->type = "Đề thi"}}

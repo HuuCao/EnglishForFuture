@@ -400,7 +400,7 @@
 								<div class="card-header">
 									<h4 class="card-title">{{Session::get('soluong')}} Câu hỏi</h4>
 								</div>
-								<div class="button-add">
+								{{-- <div class="button-add">
 									<a href="{{asset('admin/blog/add')}}" type="button" class="btn btn-success pull-right mr-3 mt-3">Thêm mới</a>
 									<form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
 										@csrf
@@ -412,6 +412,9 @@
 										</div>
 										<button class="btn btn-primary" style="max-width: 500px;">Thêm</button>
 									</form>
+								</div> --}}
+								<div class="button-add">
+									<a href="{{asset('admin/question/add')}}" type="button" class="btn btn-primary pull-right mr-3 mt-3">Upload câu hỏi</a>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">

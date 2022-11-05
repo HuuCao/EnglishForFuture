@@ -1,20 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\Blog;
 use App\Models\Exam;
 use App\Models\Question;
-use App\Models\User_Course;
 use App\Imports\QuestionImports;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use Maatwebsite\Excel\Jobs\QueueImport;
 
 class AdminController extends Controller
 {
@@ -526,7 +524,6 @@ class AdminController extends Controller
 
         $data_exam=Exam::with('users')->with('lessons')->with('questions')->where('is_active', 1)->get();
         Session::put('soluong',count(($data_exam)));
-        // return $data_exam;
         return view('admin.exams.exam', compact('data_exam'));
     }
 
@@ -548,10 +545,10 @@ class AdminController extends Controller
         if($data!=null){
             return redirect('admin/exam/add')->with('error','Tên bài kiểm tra đã tồn tại');
         }
-
-        $exam->exam_name=$request->exam_name;
-        $exam->type=$request->type;
-
+        $exam->exam_name = $request->exam_name;
+        $exam->status = 1;
+        $exam->type = $request->type;
+        $exam->user_id = 1;
         $exam->save();
 
         return redirect('admin/exam');
@@ -563,9 +560,8 @@ class AdminController extends Controller
         {
             return redirect('login');
         }
-            $data_lesson=Exam::find($id);
-            // dd($data_user);
-            return view('admin.lessons.edit',compact('data_lesson'));
+        $data_exam=Exam::find($id);
+        return view('admin.exams.edit',compact('data_exam'));
     }
 
     public function postEditExam(Request $request, $id)
@@ -637,31 +633,13 @@ class AdminController extends Controller
         {
             return redirect('login');
         }
-        return view("admin.lessons.add");
+        return view("admin.questions.add");
     }
     
     public function postAddQuestion(Request $request)
     {
-        $lesson = new Question;
-
-        $data=Question::where('lesson_name',$request->lesson_name)->where('is_active', 1)->first();
-        if($data!=null){
-            return redirect('admin/lesson/add')->with('error','Tên bài giảng đã tồn tại');
-        }
-
-        $lesson->lesson_name=$request->lesson_name;
-        if ($request->hasFile("image")) {
-            $file = $request->image->getClientOriginalName();
-            $day = date("Y-m-d");
-            $file_custom = $day . "_" . $file;
-            $file_custom =
-                "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
-            $lesson->image = $file_custom;
-            $request->image->move("upload/", $file_custom);
-        }
-        $lesson->save();
-
-        return redirect('admin/lesson');
+        dd($request->all());
+        return redirect('admin/question');
     }
 
     public function editQuestion($id)
@@ -724,6 +702,6 @@ class AdminController extends Controller
     public function fileImport(Request $request) 
     {
         Excel::import(new QuestionImports, $request->file('file'));
-        return back()->with('mess', "Upload file thành công!");
+        return redirect('admin/question/add')->with('message', "Upload câu hỏi thành công!");
     }
 }

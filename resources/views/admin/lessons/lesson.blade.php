@@ -436,9 +436,6 @@
                                                         </td>
                                                         <td>
                                                             <div class="form-button-action">
-																<a type="submit" data-toggle="tooltip" href="{{asset('admin/lesson/edit/'.$lesson->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="List Lesson">
-                                                                    <i class="fa fa-info"></i>
-																</a>
                                                                 <a type="submit" data-toggle="tooltip" href="{{asset('admin/lesson/edit/'.$lesson->id)}}" name="edit" value="Edit" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Course">
                                                                     <i class="fa fa-edit"></i>
 																</a>
@@ -528,7 +525,7 @@
 
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="{{asset('public/admin/js/setting-demo.js')}}"></script>
-	<script >
+	{{-- <script >
 		$(document).ready(function() {
 			$('#basic-datatables').DataTable({
 			});
@@ -575,6 +572,6 @@
 
 			});
 		});
-	</script>
+	</script> --}}
 </body>
 </html>

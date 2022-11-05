@@ -387,37 +387,32 @@
                   <div class="card">
                      <div class="card-header">Register</div>
                      <div class="card-body">
-                        <form class="form-horizontal" method="post" action="#" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group">
-								<label for="blog_name" class="cols-sm-2 control-label">Tên Blog</label>
-								<div class="cols-sm-10">
-										<div class="input-group">
-											<input type="text" class="form-control" name="blog_name" id="blog_name" placeholder="Nhập tên blog" required value="{{Session::get('blog_name')}}"/>
-										</div>
+						<div>
+							@if ($message = Session::get('message'))
+								<div class="alert alert-success alert-block">
+									<button type="button" class="close" data-dismiss="alert">×</button>	
+										<strong>{{ $message }}</strong>
 								</div>
-                            </div>
-                            <div class="form-group">
-                               <label for="content" class="cols-sm-2 control-label">Nội dung</label>
-                               <div class="cols-sm-10">
-									<div class="input-group">
-										<textarea class="form-control" name="content" placeholder="Nhập nội dung" required rows="5">{{Session::get('content')}}</textarea>
-									</div>
-                               </div>
-                            </div>
-                            
-                            <div class="form-group">
-                               <label for="iamge" class="cols-sm-2 control-label">Hình ảnh</label>
-                               <div class="cols-sm-10">
-                                  <div class="input-group">
-                                     <input type="file" class="form-control" name="image" id="image" required value="{{Session::get('image')}}"/>
-                                  </div>
-                               </div>
-                            </div>
-                           <div class="form-group pull-right">
-                               <a href="{{asset('admin/blog')}}" style="color: white" type="submit" class="btn btn-danger ">Hủy</a>
-                               <button style="color: white" type="submit" class="btn btn-primary ">Lưu</button>
-                           </div>
+							@endif
+						</div>
+                        <form method="post" action="{{ route('file-import') }}" enctype="multipart/form-data">
+							@csrf
+                            <div class="form-group md-3">
+									<label for="file">Upload danh sách câu hỏi</label>
+									<input class="form-control" type="file" id="file" name="file">
+								<br>
+								<button class="btn btn-primary">Upload câu hỏi</button>
+							</div>
+                        </form>
+						
+                        <form class="form-horizontal" method="post" enctype="multipart/form-data">
+							@csrf
+                            <div class="form-group md-3">
+								<label for="file">Upload hình</label>
+								<input class="form-control" type="file" id="file" name="image[]" multiple>
+								<br>
+								<button class="btn btn-primary">Upload hình</button>
+							</div>
                         </form>
                      </div>
                   </div>
@@ -466,7 +461,7 @@
 
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="{{asset('public/admin/js/setting-demo.js')}}"></script>
-	<script >
+	{{-- <script >
 		$(document).ready(function() {
 			$('#basic-datatables').DataTable({
 			});
@@ -513,6 +508,6 @@
 
 			});
 		});
-	</script>
+	</script> --}}
 </body>
 </html>

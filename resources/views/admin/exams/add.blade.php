@@ -387,13 +387,13 @@
                   <div class="card">
                      <div class="card-header">Register</div>
                      <div class="card-body">
-                        <form class="form-horizontal" method="post" action="#" enctype="multipart/form-data">
+                        <form class="form-horizontal" method="post">
                             @csrf
                             <div class="form-group">
-								<label for="blog_name" class="cols-sm-2 control-label">Tên đề kiểm tra</label>
+								<label for="exam_name" class="cols-sm-2 control-label">Tên đề kiểm tra</label>
 								<div class="cols-sm-10">
 									<div class="input-group">
-										<input type="text" class="form-control" name="blog_name" id="blog_name" placeholder="Nhập tên đề kiểm tra" required value="{{Session::get('blog_name')}}"/>
+										<input type="text" class="form-control" name="exam_name" id="exam_name" placeholder="Nhập tên đề kiểm tra" required value="{{Session::get('exam_name')}}"/>
 									</div>
 								</div>
                             </div>
@@ -413,7 +413,7 @@
                                <label for="iamge" class="cols-sm-2 control-label">Bài giảng</label>
                                <div class="cols-sm-10">
 									<div class="input-group">
-										<select  name="name_topic" class='js-select2-multi form-control' >
+										<select  name="lesson_id" class='js-select2-multi form-control' >
 											<option value="" @if(Session::get('id')==null) selected @endif >Chọn bài giảng</option>
 											@foreach($data_lesson as $al)
 												<option @if(Session::get('lesson_name')==$al->id) selected @endif value="{{$al->id}}"> {{$al->lesson_name}}</option>
@@ -422,19 +422,8 @@
 									</div>
                                </div>
                             </div>
-                            <div class="form-group">
-                               <label for="iamge" class="cols-sm-2 control-label">Bài giảng</label>
-                               <div class="cols-sm-10">
-									<div class="input-group">
-										<form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
-											{{-- <label for="input-b4b">Disabled Input</label> --}}
-											<input id="input-b2" name="input-b2" type="file" class="form-control" data-show-preview="false">
-										</form>
-									</div>
-                               </div>
-                            </div>
                            <div class="form-group pull-right">
-                               <a href="{{asset('admin/blog')}}" style="color: white" type="submit" class="btn btn-danger ">Hủy</a>
+                               <a href="{{asset('admin/exam')}}" style="color: white" type="submit" class="btn btn-danger ">Hủy</a>
                                <button style="color: white" type="submit" class="btn btn-primary ">Lưu</button>
                            </div>
                         </form>
