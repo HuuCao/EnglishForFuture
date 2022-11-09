@@ -409,6 +409,7 @@
 											<thead>
 												<tr>
 													<th>STT</th>
+													<th>Mã upload</th>
 													<th>Tên bài kiểm tra</th>
 													<th>Bài giảng</th>
 													<th>Người tạo</th>
@@ -426,6 +427,7 @@
                                                     <?php $i++ ?>
                                                     <tr>
                                                         <td>{{$i}}</td>
+                                                        <td>{{$exam->id}}</td>
                                                         <td>{{$exam->exam_name}}</td>
                                                         <td>
 															@if ($exam->lesson_id == null)

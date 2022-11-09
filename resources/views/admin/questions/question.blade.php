@@ -400,19 +400,6 @@
 								<div class="card-header">
 									<h4 class="card-title">{{Session::get('soluong')}} Câu hỏi</h4>
 								</div>
-								{{-- <div class="button-add">
-									<a href="{{asset('admin/blog/add')}}" type="button" class="btn btn-success pull-right mr-3 mt-3">Thêm mới</a>
-									<form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
-										@csrf
-										<div class="form-group md-3" style="max-width: 500px;">
-											<div class="custom-file">
-												<input type="file" name="file" class="custom-file-input" id="customFile" required>
-												<label class="custom-file-label" for="customFile">Chọn file thêm câu hỏi</label>
-											</div>
-										</div>
-										<button class="btn btn-primary" style="max-width: 500px;">Thêm</button>
-									</form>
-								</div> --}}
 								<div class="button-add">
 									<a href="{{asset('admin/question/add')}}" type="button" class="btn btn-primary pull-right mr-3 mt-3">Upload câu hỏi</a>
 								</div>
@@ -423,12 +410,9 @@
 												<tr>
 													<th>STT</th>
 													<th>Tên câu hỏi</th>
-													<th>Đáp án a</th>
-													<th>Đáp án b</th>
-													<th>Đáp án c</th>
-													<th>Đáp án d</th>
-													<th>Đáp án đúng</th>
-													<th>Giải thích</th>
+													<th style="text-align: center">Hình ảnh</th>
+													<th style="text-align: center">Audio</th>
+													<th style="text-align: center">Đáp án đúng</th>
 													<th>Trạng thái</th>
 													<th>Action</th>
 												</tr>
@@ -442,12 +426,14 @@
                                                     <tr>
                                                         <td>{{$i}}</td>
                                                         <td>{{$question->question_name}}</td>
-                                                        <td>{{$question->answer_a}}</td>
-                                                        <td>{{$question->answer_b}}</td>
-                                                        <td>{{$question->answer_c}}</td>
-                                                        <td>{{$question->answer_d}}</td>
-                                                        <td>{{$question->correct_answer}}</td>
-                                                        <td>{{$question->explain}}</td>
+                                                        <td style="width: 200px; text-align: center;">
+															<img style="width: 50%; margin-top: 4px; margin-bottom: 4px;" src="{{$question->image}}">
+														</td>
+                                                        <td style="text-align: center;">
+															<i class="fa fa-volume-up"></i>
+														</td>
+                                                        <td style="text-align: center; width: 400px">{{$question->correct_answer}}</td>
+                                                        {{-- <td>{{$question->explain}}</td> --}}
                                                         <td>
                                                             @if($question->status==1)
                                                                 {{$question->status = "On"}}

@@ -383,40 +383,59 @@
 		</div>
         <div class="main-panel">
             <div class="row justify-content-center">
-               <div class="col-md-12">
-                  <div class="card">
-                     <div class="card-header">Register</div>
-                     <div class="card-body">
-						<div>
-							@if ($message = Session::get('message'))
-								<div class="alert alert-success alert-block">
-									<button type="button" class="close" data-dismiss="alert">×</button>	
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">Register</div>
+						<div class="card-body">
+							<div>
+								@if ($message = Session::get('message'))
+									<div class="alert alert-success alert-block">
+										<button type="button" class="close" data-dismiss="alert">×</button>	
 										<strong>{{ $message }}</strong>
+									</div>
+								@endif
+							</div>
+							<form method="post" action="{{ route('file-import') }}" enctype="multipart/form-data">
+								@csrf
+								<div class="form-group md-3">
+										<label for="file">Upload danh sách câu hỏi</label>
+										<input class="form-control" type="file" id="file" name="file">
+									<br>
+									<button class="btn btn-primary">Upload câu hỏi</button>
 								</div>
-							@endif
+							</form>
+							
+							<form class="form-horizontal" action="{{ route('upload-image') }}" method="post" enctype="multipart/form-data">
+								@csrf
+								<div class="form-group md-3">
+									<label for="file">Upload hình</label>
+									<input class="form-control" type="file" id="images" name="images[]" multiple>
+									<br>
+									{{-- <button type="submit" class="btn btn-primary">Upload hình</button> --}}
+								</div>
+								<div class="form-group md-3">
+									<label for="file">Upload Audio</label>
+									<input class="form-control" type="file" id="audios" name="audios[]" multiple>
+									<br>
+								</div>
+								<button type="submit" class="btn btn-primary">Upload audio</button>
+							</form>
+							
+							{{-- <form class="form-horizontal" action="{{ route('upload-audio') }}" method="post" enctype="multipart/form-data">
+								@csrf
+								<div class="form-group md-3">
+									<label for="file">Upload Audio</label>
+									<input class="form-control" type="file" id="audios" name="audios[]" multiple>
+									<br>
+									<button type="submit" class="btn btn-primary">Upload audio</button>
+								</div>
+							</form> --}}
 						</div>
-                        <form method="post" action="{{ route('file-import') }}" enctype="multipart/form-data">
-							@csrf
-                            <div class="form-group md-3">
-									<label for="file">Upload danh sách câu hỏi</label>
-									<input class="form-control" type="file" id="file" name="file">
-								<br>
-								<button class="btn btn-primary">Upload câu hỏi</button>
-							</div>
-                        </form>
-						
-                        <form class="form-horizontal" method="post" enctype="multipart/form-data">
-							@csrf
-                            <div class="form-group md-3">
-								<label for="file">Upload hình</label>
-								<input class="form-control" type="file" id="file" name="image[]" multiple>
-								<br>
-								<button class="btn btn-primary">Upload hình</button>
-							</div>
-                        </form>
-                     </div>
-                  </div>
-               </div>
+					</div>
+					<div class="form-group pull-left">
+						<a href="{{asset('admin/question')}}" style="color: white" type="submit" class="btn btn-danger ">Trở lại</a>
+					</div>
+				</div>
             </div>
         </div>
 		<!-- End Custom template -->

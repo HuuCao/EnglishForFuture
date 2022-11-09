@@ -636,10 +636,36 @@ class AdminController extends Controller
         return view("admin.questions.add");
     }
     
-    public function postAddQuestion(Request $request)
+    public function uploadImage(Request $request)
     {
-        dd($request->all());
-        return redirect('admin/question');
+        if($request->hasFile("images")){
+            $files=$request->file("images");
+            foreach($files as $file){
+                $imageName=$file->getClientOriginalName();
+                $file->move("upload/",$imageName);
+            }
+        }
+        if($request->hasFile("audios")){
+            $files=$request->file("audios");
+            foreach($files as $file){
+                $audioName=$file->getClientOriginalName();
+                $file->move("upload/",$audioName);
+            }
+        }
+        return redirect('admin/question/add')->with('message', "Upload hình ảnh và audio thành công!");
+    }
+    
+    public function uploadAudio(Request $request)
+    {
+        if($request->hasFile("audios")){
+            $files=$request->file("audios");
+            dd($files);
+            foreach($files as $file){
+                $audioName=$file->getClientOriginalName();
+                $file->move("upload/",$audioName);
+            }
+        }
+        return redirect('admin/question/add')->with('message', "Upload audio thành công!");
     }
 
     public function editQuestion($id)
@@ -662,7 +688,6 @@ class AdminController extends Controller
             ->where('lesson_name',$lesson_name)
             ->where('id','<>',$id)
             ->first();
-            // dd($check_data);
         if($check_data==null){
             $lesson= Question::find($id);
             $lesson->lesson_name=$request->lesson_name;

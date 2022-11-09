@@ -79,11 +79,10 @@ Route::group(['prefix' => '/admin'], function () {
     Route::group(['prefix' => '/question'], function () {
         Route::get('/', [AdminController::class, 'getAllQuestion']);
         Route::get('/add', [AdminController::class, 'addQuestion']);
-        Route::post('/add', [AdminController::class, 'postAddQuestion']);
+        Route::post('/add', [AdminController::class, 'uploadImage'])->name('upload-image');
         Route::get('/edit/{id}', [AdminController::class, 'editQuestion']);
         Route::post('/edit/{id}', [AdminController::class, 'postEditQuestion']);
         Route::get('/delete/{id}', [AdminController::class, 'deleteQuestion']);
-
         Route::post('file-import', [AdminController::class, 'fileImport'])->name('file-import');
     }); 
     
