@@ -29,6 +29,12 @@ Route::get('/register', [HomeController::class, 'register']);
 Route::post('/register', [HomeController::class, 'postRegister']);
 Route::get('/logout', [HomeController::class, 'logout']);
 Route::get('/course', [HomeController::class, 'course']);
+// Route::get('/test', [HomeController::class, 'test']);
+Route::group(['prefix' => '/test'], function () {
+    // Route::get('/', [HomeController::class, 'listTest']);
+    Route::get('/{id}', [HomeController::class, 'detailTest']);
+    Route::post('/{id}/result', [HomeController::class, 'result'])->name('test.result');
+});
 
 // Login with FB & GG
 Route::get('/login/facebook', [SocialController::class, 'redirectToFacebook']);
@@ -47,7 +53,7 @@ Route::group(['prefix' => '/admin'], function () {
         Route::get('/edit/{id}', [AdminController::class, 'editUser']);
         Route::post('/edit/{id}', [AdminController::class, 'postEditUser']);
         Route::get('/delete/{id}', [AdminController::class, 'deleteUser']);
-    }); 
+    });
 
     Route::group(['prefix' => '/course'], function () {
         Route::get('/', [AdminController::class, 'getAllCourse']);
@@ -56,7 +62,7 @@ Route::group(['prefix' => '/admin'], function () {
         Route::get('/edit/{id}', [AdminController::class, 'editCourse']);
         Route::post('/edit/{id}', [AdminController::class, 'postEditCourse']);
         Route::get('/delete/{id}', [AdminController::class, 'deleteCourse']);
-    }); 
+    });
 
     Route::group(['prefix' => '/lesson'], function () {
         Route::get('/', [AdminController::class, 'getAllLesson']);
@@ -65,7 +71,7 @@ Route::group(['prefix' => '/admin'], function () {
         Route::get('/edit/{id}', [AdminController::class, 'editLesson']);
         Route::post('/edit/{id}', [AdminController::class, 'postEditLesson']);
         Route::get('/delete/{id}', [AdminController::class, 'deleteLesson']);
-    }); 
+    });
 
     Route::group(['prefix' => '/exam'], function () {
         Route::get('/', [AdminController::class, 'getAllExam']);
@@ -74,7 +80,7 @@ Route::group(['prefix' => '/admin'], function () {
         Route::get('/edit/{id}', [AdminController::class, 'editExam']);
         Route::post('/edit/{id}', [AdminController::class, 'postEditExam']);
         Route::get('/delete/{id}', [AdminController::class, 'deleteExam']);
-    }); 
+    });
 
     Route::group(['prefix' => '/question'], function () {
         Route::get('/', [AdminController::class, 'getAllQuestion']);
@@ -84,8 +90,8 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/edit/{id}', [AdminController::class, 'postEditQuestion']);
         Route::get('/delete/{id}', [AdminController::class, 'deleteQuestion']);
         Route::post('file-import', [AdminController::class, 'fileImport'])->name('file-import');
-    }); 
-    
+    });
+
     Route::group(['prefix' => '/blog'], function () {
         Route::get('/', [AdminController::class, 'getAllBlog']);
         Route::get('/add', [AdminController::class, 'addBlog']);
@@ -93,7 +99,7 @@ Route::group(['prefix' => '/admin'], function () {
         Route::get('/edit/{id}', [AdminController::class, 'editBlog']);
         Route::post('/edit/{id}', [AdminController::class, 'postEditBlog']);
         Route::get('/delete/{id}', [AdminController::class, 'deleteBlog']);
-    }); 
+    });
 
-    Route::get('/userget', [AdminController::class, 'getAll']); 
+    Route::get('/userget', [AdminController::class, 'getAll']);
 });

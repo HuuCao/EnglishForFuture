@@ -53,11 +53,11 @@
           </div>
           <div class="col-lg-3 text-right">
             @if(Session::get('username')==null)
-            <a href="{{asset('login')}}" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
-            <a href="register" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Register</a>
+              <a href="{{asset('login')}}" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
+              <a href="register" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Register</a>
             @else
-            <p > {{Session::get('username')}}</p>
-            <a href="{{asset('logout')}}" class="small mr-3"><span class="icon-unlock-alt"></span> Log Out</a>
+              <p>{{Session::get('username')}}</p>
+              <a href="{{asset('logout')}}" class="small mr-3"><span class="icon-unlock-alt"></span> Log Out</a>
             @endif
           </div>
         </div>
@@ -69,7 +69,7 @@
         <div class="d-flex align-items-center">
           <div class="site-logo">
             <a href="index.html" class="d-block">
-              <img src="{{asset('public/home/images/logo.jpg')}}" alt="Image" class="img-fluid">
+              <img src="{{asset('public/home/images/logo.png')}}" alt="Image" class="img-fluid">
             </a>
           </div>
           <div class="mr-auto">
@@ -79,21 +79,24 @@
                   <a href="{{asset('home')}}" class="nav-link text-left">Home</a>
                 </li>
                 <li class="has-children">
-                  <a href="about.html" class="nav-link text-left">About Us</a>
+                  <a href="#" class="nav-link text-left">About Us</a>
                   <ul class="dropdown">
-                    <li><a href="teachers.html">Our Teachers</a></li>
-                    <li><a href="about.html">Our School</a></li>
+                    <li><a href="#">Our Teachers</a></li>
+                    <li><a href="#">Our School</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a href="admissions.html" class="nav-link text-left">Admissions</a>
+                  <a href="#" class="nav-link text-left">Admissions</a>
                 </li>
                 <li class="active">
-                  <a href="courses.html" class="nav-link text-left">Courses</a>
+                  <a href="{{asset('course')}}" class="nav-link text-left">Courses</a>
                 </li>
                 <li>
-                    <a href="contact.html" class="nav-link text-left">Contact</a>
-                  </li>
+                  <a href="#" class="nav-link text-left">Contact</a>
+                </li>
+                <li>
+                  <a href="{{asset('test')}}" class="nav-link text-left">Test</a>
+                </li>
               </ul>                                                                                                                                                                                                                                                                                          </ul>
             </nav>
 
@@ -142,7 +145,7 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="course-1-item">
                         <figure class="thumnail">
-                        <a href="course-single.html"><img src="{{$c->image}}" alt="Image" class="img-fluid"></a>
+                        <a href="#"><img src="{{$c->image}}" alt="Image" class="img-fluid"></a>
                         <div class="category"><h3>{{$c->caption}}</h3></div>  
                         </figure>
                         <div class="course-1-content pb-4">
@@ -150,7 +153,7 @@
                         <div class="rating text-center mb-3">
                         </div>
                         <p class="desc mb-4">{{$c->description}}</p>
-                        <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Xem bài giảng</a></p>
+                        <p><a href="#" class="btn btn-primary rounded-0 px-4">Xem bài giảng</a></p>
                         </div>
                     </div>
                 </div>

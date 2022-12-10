@@ -27,6 +27,7 @@ class QuestionImports implements ToModel
             'correct_answer' => $row[9],
             'explain' => $row[10],
             'exam_id' => (int)$row[11],
+            'number_for_exam' => (int)$row[12],
         ]);
     }
 }

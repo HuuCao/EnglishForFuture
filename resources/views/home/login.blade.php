@@ -48,8 +48,8 @@
         <div class="row align-items-center">
           <div class="col-lg-9 d-none d-lg-block">
             <a href="#" class="small mr-3"><span class="icon-question-circle-o mr-2"></span> Have a questions?</a> 
-            <a href="#" class="small mr-3"><span class="icon-phone2 mr-2"></span> 10 20 123 456</a> 
-            <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> info@mydomain.com</a> 
+            <a href="#" class="small mr-3"><span class="icon-phone2 mr-2"></span>0798 012 416</a> 
+            <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> englishforfuture@gmail.com</a> 
           </div>
           <div class="col-lg-3 text-right">
             <a href="{{'login'}}" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
@@ -64,7 +64,7 @@
         <div class="d-flex align-items-center">
           <div class="site-logo">
             <a href="" class="d-block">
-              <img src="{{asset('public/home/images/logo.jpg')}}" alt="Image" class="img-fluid">
+              <img src="{{asset('public/home/images/logo.png')}}" alt="Image" class="img-fluid">
             </a>
           </div>
           <div class="mr-auto">
@@ -115,7 +115,7 @@
           <div class="row align-items-end justify-content-center text-center">
             <div class="col-lg-7">
               <h2 class="mb-0">Login</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+              <p>English system for the future.</p>
             </div>
           </div>
         </div>
@@ -138,7 +138,14 @@
             <div class="row justify-content-center">
                 <div class="col-md-5">
                     <div class="row">
-                        <div style="color: red;">{{Session::get("errthongbao")}}</div>
+                        <div class="col-md-12 form-group">
+                            @if ($message = Session::get('errthongbao'))
+                                <div class="alert alert-danger alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>	
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                            @endif
+                        </div>
                         <div class="col-md-12 form-group">
                             <label for="username">Username</label>
                             <input type="text" id="username" name="username" class="form-control form-control-lg">

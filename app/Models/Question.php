@@ -36,8 +36,8 @@ class Question extends Model
         'answer_d',
         'correct_answer',
         'explain',
-        'correct_answer',
         'exam_id',
+        'number_for_exam',
     ];
 
     protected $table = "tbl_question";
