@@ -188,7 +188,7 @@ class AdminController extends Controller
             $day = date("Y-m-d");
             $file_custom = $day . "_" . $file;
             $file_custom =
-                "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+                "https://englishforfutute.herokuapp.com/upload/" . $day . "_" . $file;
             $course->image = $file_custom;
             $request->image->move("upload/", $file_custom);
         }
@@ -234,7 +234,7 @@ class AdminController extends Controller
                 $day = date("Y-m-d");
                 $file_custom = $day . "_" . $file;
                 $file_custom =
-                    "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+                    "https://englishforfutute.herokuapp.com/upload/" . $day . "_" . $file;
                 $course->image = $file_custom;
                 $request->image->move("upload/", $file_custom);
             }
@@ -297,7 +297,7 @@ class AdminController extends Controller
             $day = date("Y-m-d");
             $file_custom = $day . "_" . $file;
             $file_custom =
-                "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+                "https://englishforfutute.herokuapp.com/upload/" . $day . "_" . $file;
             $lesson->image = $file_custom;
             $request->image->move("upload/", $file_custom);
         }
@@ -333,7 +333,7 @@ class AdminController extends Controller
                 $day = date("Y-m-d");
                 $file_custom = $day . "_" . $file;
                 $file_custom =
-                    "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+                    "https://englishforfutute.herokuapp.com/upload/" . $day . "_" . $file;
                 $lesson->image = $file_custom;
                 $request->image->move("upload/", $file_custom);
             }
@@ -392,7 +392,7 @@ class AdminController extends Controller
             $day = date("Y-m-d");
             $file_custom = $day . "_" . $file;
             $file_custom =
-                "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+                "https://englishforfutute.herokuapp.com/upload/" . $day . "_" . $file;
             $blog->image = $file_custom;
             $request->image->move("upload/", $file_custom);
         }
@@ -430,7 +430,7 @@ class AdminController extends Controller
                 $day = date("Y-m-d");
                 $file_custom = $day . "_" . $file;
                 $file_custom =
-                    "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+                    "https://englishforfutute.herokuapp.com/upload/" . $day . "_" . $file;
                 $blog->image = $file_custom;
                 $request->image->move("upload/", $file_custom);
             }
@@ -529,7 +529,7 @@ class AdminController extends Controller
                 $day = date("Y-m-d");
                 $file_custom = $day . "_" . $file;
                 $file_custom =
-                    "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+                    "https://englishforfutute.herokuapp.com/upload/" . $day . "_" . $file;
                 $lesson->image = $file_custom;
                 $request->image->move("upload/", $file_custom);
             }
@@ -629,7 +629,7 @@ class AdminController extends Controller
                 $day = date("Y-m-d");
                 $file_custom = $day . "_" . $file;
                 $file_custom =
-                    "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
+                    "https://englishforfutute.herokuapp.com/upload/" . $day . "_" . $file;
                 $lesson->image = $file_custom;
                 $request->image->move("upload/", $file_custom);
             }
