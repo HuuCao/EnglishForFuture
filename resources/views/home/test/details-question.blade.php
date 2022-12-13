@@ -33,26 +33,27 @@
                 {{-- id="testing_answer_number_for_exam_3" --}}
                 <div class="myquestionarea" id="testing_answer_{{ $itemP1->id }}_{{ $itemP1->number_for_exam }}">
                     <p><b>Question {{ $itemP1->number_for_exam }}:</b></p>
+                    <p>{{ $itemP1->question_name }}</p>
                     <div>
                         <label class="question-label" id="test_answer_label_A">
                             <input type="radio" data-iquestion="{{ $itemP1->number_for_exam }}"
                                 data-question="{{ $itemP1->id }}" name="answer[{{ $itemP1->id }}]" value="A">
-                            <strong>A</strong> <span id="tapescript_answer_A" class="answer_content"></span>
+                            <strong>A</strong> <span id="tapescript_answer_A" class="answer_content">{{$itemP1->answer_a}}</span>
                         </label>
                         <label class="question-label" id="test_answer_label_B">
                             <input type="radio" data-iquestion="{{ $itemP1->number_for_exam }}"
                                 data-question="{{ $itemP1->id }}" name="answer[{{ $itemP1->id }}]" value="B">
-                            <strong>B</strong> <span id="tapescript_answer_B" class="answer_content"></span>
+                            <strong>B</strong> <span id="tapescript_answer_B" class="answer_content">{{$itemP1->answer_b}}</span>
                         </label>
                         <label class="question-label" id="test_answer_label_C">
                             <input type="radio" data-iquestion="{{ $itemP1->number_for_exam }}"
                                 data-question="{{ $itemP1->id }}" name="answer[{{ $itemP1->id }}]" value="C">
-                            <strong>C</strong> <span id="tapescript_answer_C" class="answer_content"></span>
+                            <strong>C</strong> <span id="tapescript_answer_C" class="answer_content">{{$itemP1->answer_c}}</span>
                         </label>
                         <label class="question-label" id="test_answer_label_D">
                             <input type="radio" data-iquestion="{{ $itemP1->number_for_exam }}"
                                 data-question="{{ $itemP1->id }}" name="answer[{{ $itemP1->id }}]" value="D">
-                            <strong>D</strong> <span id="tapescript_answer_D" class="answer_content"></span>
+                            <strong>D</strong> <span id="tapescript_answer_D" class="answer_content">{{$itemP1->answer_d}}</span>
                         </label>
                     </div>
                 </div>
@@ -87,21 +88,22 @@
             <div class="col-7">
                 <div class="myquestionarea" id="testing_answer_{{ $itemP2->id }}_{{ $itemP2->number_for_exam }}">
                     <p><b>Question {{ $itemP2->number_for_exam }}:</b></p>
+                    <p>{{ $itemP2->question_name }}</p>
                     <div>
                         <label class="question-label" id="test_answer_label_A">
                             <input type="radio" data-iquestion="{{ $itemP2->number_for_exam }}"
                                 data-question="{{ $itemP2->id }}" name="answer[{{ $itemP2->id }}]" value="A">
-                            <strong>A</strong> <span id="tapescript_answer_A" class="answer_content"></span>
+                            <strong>A</strong> <span id="tapescript_answer_A" class="answer_content">{{$itemP2->answer_a}}</span>
                         </label>
                         <label class="question-label" id="test_answer_label_B">
                             <input type="radio" data-iquestion="{{ $itemP2->number_for_exam }}"
                                 data-question="{{ $itemP2->id }}" name="answer[{{ $itemP2->id }}]" value="B">
-                            <strong>B</strong> <span id="tapescript_answer_B" class="answer_content"></span>
+                            <strong>B</strong> <span id="tapescript_answer_B" class="answer_content">{{$itemP2->answer_b}}</span>
                         </label>
                         <label class="question-label" id="test_answer_label_C">
                             <input type="radio" data-iquestion="{{ $itemP2->number_for_exam }}"
                                 data-question="{{ $itemP2->id }}" name="answer[{{ $itemP2->id }}]" value="C">
-                            <strong>C</strong> <span id="tapescript_answer_C" class="answer_content"></span>
+                            <strong>C</strong> <span id="tapescript_answer_C" class="answer_content">{{$itemP2->answer_c}}</span>
                         </label>
                     </div>
                 </div>
@@ -150,13 +152,14 @@
                             <p><b>Question {{ $itemP3->number_for_exam }}:
                                     {{ $itemP3->question }}
                                 </b></p>
+                                <p>{{ $itemP3->question_name }}</p>
                             <div>
                                 <label class="question-label" id="test_answer_label_A">
                                     <input type="radio" data-iquestion="{{ $itemP3->number_for_exam }}"
                                         data-question="{{ $itemP3->id }}" name="answer[{{ $itemP3->id }}]"
                                         value="A">
                                     <strong>A</strong> <span id="tapescript_answer_A" class="answer_content">
-                                        {{ $itemP3->option_1 }}
+                                        {{ $itemP3->answer_a }}
                                     </span>
                                 </label>
                                 <label class="question-label" id="test_answer_label_B">
@@ -164,7 +167,7 @@
                                         data-question="{{ $itemP3->id }}" name="answer[{{ $itemP3->id }}]"
                                         value="B">
                                     <strong>B</strong> <span id="tapescript_answer_B" class="answer_content">
-                                        {{ $itemP3->option_2 }}
+                                        {{ $itemP3->answer_b }}
                                     </span>
                                 </label>
                                 <label class="question-label" id="test_answer_label_C">
@@ -172,7 +175,7 @@
                                         data-question="{{ $itemP3->id }}" name="answer[{{ $itemP3->id }}]"
                                         value="C">
                                     <strong>C</strong> <span id="tapescript_answer_C" class="answer_content">
-                                        {{ $itemP3->option_3 }}
+                                        {{ $itemP3->answer_c }}
                                     </span>
                                 </label>
                                 <label class="question-label" id="test_answer_label_D">
@@ -180,7 +183,7 @@
                                         data-question="{{ $itemP3->id }}" name="answer[{{ $itemP3->id }}]"
                                         value="D">
                                     <strong>D</strong> <span id="tapescript_answer_D" class="answer_content">
-                                        {{ $itemP3->option_4 }}
+                                        {{ $itemP3->answer_d }}
                                     </span>
                                 </label>
                             </div>
@@ -229,13 +232,14 @@
                             <p><b>Question {{ $itemP4->number_for_exam }}:
                                     {{ $itemP4->question }}
                                 </b></p>
+                                <p>{{ $itemP4->question_name }}</p>
                             <div>
                                 <label class="question-label" id="test_answer_label_A">
                                     <input type="radio" data-iquestion="{{ $itemP4->number_for_exam }}"
                                         data-question="{{ $itemP4->id }}" name="answer[{{ $itemP4->id }}]"
                                         value="A">
                                     <strong>A</strong> <span id="tapescript_answer_A" class="answer_content">
-                                        {{ $itemP4->option_1 }}
+                                        {{ $itemP4->answer_a }}
                                     </span>
                                 </label>
                                 <label class="question-label" id="test_answer_label_B">
@@ -243,7 +247,7 @@
                                         data-question="{{ $itemP4->id }}" name="answer[{{ $itemP4->id }}]"
                                         value="B">
                                     <strong>B</strong> <span id="tapescript_answer_B" class="answer_content">
-                                        {{ $itemP4->option_2 }}
+                                        {{ $itemP4->answer_b }}
                                     </span>
                                 </label>
                                 <label class="question-label" id="test_answer_label_C">
@@ -251,7 +255,7 @@
                                         data-question="{{ $itemP4->id }}" name="answer[{{ $itemP4->id }}]"
                                         value="C">
                                     <strong>C</strong> <span id="tapescript_answer_C" class="answer_content">
-                                        {{ $itemP4->option_3 }}
+                                        {{ $itemP4->answer_c }}
                                     </span>
                                 </label>
                                 <label class="question-label" id="test_answer_label_D">
@@ -259,7 +263,7 @@
                                         data-question="{{ $itemP4->id }}" name="answer[{{ $itemP4->id }}]"
                                         value="D">
                                     <strong>D</strong> <span id="tapescript_answer_D" class="answer_content">
-                                        {{ $itemP4->option_4 }}
+                                        {{ $itemP4->answer_d }}
                                     </span>
                                 </label>
                             </div>
@@ -301,34 +305,35 @@
             <div class="col-7">
                 <div class="myquestionarea" id="testing_answer_{{ $itemP5->id }}_{{ $itemP5->number_for_exam }}">
                     <p><b>Question {{ $itemP5->number_for_exam }}:{{ $itemP5->question }}</b></p>
+                    <p>{{ $itemP5->question_name }}</p>
                     <div>
                         <label class="question-label" id="test_answer_label_A">
                             <input type="radio" data-iquestion="{{ $itemP5->number_for_exam }}"
                                 data-question="{{ $itemP5->id }}" name="answer[{{ $itemP5->id }}]"
                                 value="A">
                             <strong>A</strong> <span id="tapescript_answer_A"
-                                class="answer_content">{{ $itemP5->option_1 }}</span>
+                                class="answer_content">{{ $itemP5->answer_a }}</span>
                         </label>
                         <label class="question-label" id="test_answer_label_B">
                             <input type="radio" data-iquestion="{{ $itemP5->number_for_exam }}"
                                 data-question="{{ $itemP5->id }}" name="answer[{{ $itemP5->id }}]"
                                 value="B">
                             <strong>B</strong> <span id="tapescript_answer_B"
-                                class="answer_content">{{ $itemP5->option_2 }}</span>
+                                class="answer_content">{{ $itemP5->answer_b }}</span>
                         </label>
                         <label class="question-label" id="test_answer_label_C">
                             <input type="radio" data-iquestion="{{ $itemP5->number_for_exam }}"
                                 data-question="{{ $itemP5->id }}" name="answer[{{ $itemP5->id }}]"
                                 value="C">
                             <strong>C</strong> <span id="tapescript_answer_C"
-                                class="answer_content">{{ $itemP5->option_3 }}</span>
+                                class="answer_content">{{ $itemP5->answer_c }}</span>
                         </label>
                         <label class="question-label" id="test_answer_label_D">
                             <input type="radio" data-iquestion="{{ $itemP5->number_for_exam }}"
                                 data-question="{{ $itemP5->id }}" name="answer[{{ $itemP5->id }}]"
                                 value="D">
                             <strong>D</strong> <span id="tapescript_answer_D"
-                                class="answer_content">{{ $itemP5->option_4 }}</span>
+                                class="answer_content">{{ $itemP5->answer_d }}</span>
                         </label>
                     </div>
                 </div>
@@ -373,13 +378,14 @@
                             <p><b>Question {{ $itemP6->number_for_exam }}:
                                     {{ $itemP6->question }}
                                 </b></p>
+                                <p>{{ $itemP6->question_name }}</p>
                             <div class="d-flex justify-content-center flex-wrap">
                                 <label class="question-label" id="test_answer_label_A">
                                     <input type="radio" data-iquestion="{{ $itemP6->number_for_exam }}"
                                         data-question="{{ $itemP6->id }}" name="answer[{{ $itemP6->id }}]"
                                         value="A">
                                     <strong>A</strong> <span id="tapescript_answer_A" class="answer_content">
-                                        {{ $itemP6->option_1 }}
+                                        {{ $itemP6->answer_a }}
                                     </span>
                                 </label>
                                 <label class="question-label" id="test_answer_label_B">
@@ -387,7 +393,7 @@
                                         data-question="{{ $itemP6->id }}" name="answer[{{ $itemP6->id }}]"
                                         value="B">
                                     <strong>B</strong> <span id="tapescript_answer_B" class="answer_content">
-                                        {{ $itemP6->option_2 }}
+                                        {{ $itemP6->answer_b }}
                                     </span>
                                 </label>
                                 <label class="question-label" id="test_answer_label_C">
@@ -395,7 +401,7 @@
                                         data-question="{{ $itemP6->id }}" name="answer[{{ $itemP6->id }}]"
                                         value="C">
                                     <strong>C</strong> <span id="tapescript_answer_C" class="answer_content">
-                                        {{ $itemP6->option_3 }}
+                                        {{ $itemP6->answer_c }}
                                     </span>
                                 </label>
                                 <label class="question-label" id="test_answer_label_D">
@@ -403,7 +409,7 @@
                                         data-question="{{ $itemP6->id }}" name="answer[{{ $itemP6->id }}]"
                                         value="D">
                                     <strong>D</strong> <span id="tapescript_answer_D" class="answer_content">
-                                        {{ $itemP6->option_4 }}
+                                        {{ $itemP6->answer_d }}
                                     </span>
                                 </label>
                             </div>
@@ -449,13 +455,14 @@
                             <p><b>Question {{ $itemP7_2->number_for_exam }}:
                                     {{ $itemP7_2->question }}
                                 </b></p>
+                                <p>{{ $itemP7_2->question_name }}</p>
                             <div class="d-flex justify-content-center flex-wrap">
                                 <label class="question-label" id="test_answer_label_A">
                                     <input type="radio" data-iquestion="{{ $itemP7_2->number_for_exam }}"
                                         data-question="{{ $itemP7_2->id }}" name="answer[{{ $itemP7_2->id }}]"
                                         value="A">
                                     <strong>A</strong> <span id="tapescript_answer_A" class="answer_content">
-                                        {{ $itemP7_2->option_1 }}
+                                        {{ $itemP7_2->answer_a }}
                                     </span>
                                 </label>
                                 <label class="question-label" id="test_answer_label_B">
@@ -463,7 +470,7 @@
                                         data-question="{{ $itemP7_2->id }}" name="answer[{{ $itemP7_2->id }}]"
                                         value="B">
                                     <strong>B</strong> <span id="tapescript_answer_B" class="answer_content">
-                                        {{ $itemP7_2->option_2 }}
+                                        {{ $itemP7_2->answer_b }}
                                     </span>
                                 </label>
                                 <label class="question-label" id="test_answer_label_C">
@@ -471,7 +478,7 @@
                                         data-question="{{ $itemP7_2->id }}" name="answer[{{ $itemP7_2->id }}]"
                                         value="C">
                                     <strong>C</strong> <span id="tapescript_answer_C" class="answer_content">
-                                        {{ $itemP7_2->option_3 }}
+                                        {{ $itemP7_2->answer_c }}
                                     </span>
                                 </label>
                                 <label class="question-label" id="test_answer_label_D">
@@ -479,7 +486,7 @@
                                         data-question="{{ $itemP7_2->id }}" name="answer[{{ $itemP7_2->id }}]"
                                         value="D">
                                     <strong>D</strong> <span id="tapescript_answer_D" class="answer_content">
-                                        {{ $itemP7_2->option_4 }}
+                                        {{ $itemP7_2->answer_d }}
                                     </span>
                                 </label>
                             </div>

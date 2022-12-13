@@ -496,7 +496,6 @@
 													@endforeach
 												</tbody>
 											</table>
-											{{ $data_question->links() }}
                                     </div>
                                 </div>
                             </div>

@@ -619,7 +619,7 @@ class AdminController extends Controller
         {
             return redirect('login');
         }
-        $data_question=Question::paginate(10);
+        $data_question=Question::get();
         Session::put('soluong',count(($data_question)));
         return view('admin.questions.question', compact('data_question'));
     }
