@@ -29,11 +29,12 @@ Route::get('/register', [HomeController::class, 'register']);
 Route::post('/register', [HomeController::class, 'postRegister']);
 Route::get('/logout', [HomeController::class, 'logout']);
 Route::get('/course', [HomeController::class, 'course']);
+Route::get('/lesson', [HomeController::class, 'listLesson']);
 // Route::get('/test', [HomeController::class, 'test']);
 Route::group(['prefix' => '/test'], function () {
-    // Route::get('/', [HomeController::class, 'listTest']);
+    Route::get('/', [HomeController::class, 'listTest']);
     Route::get('/{id}', [HomeController::class, 'detailTest']);
-    Route::post('/{id}/result', [HomeController::class, 'result'])->name('test.result');
+    Route::post('/result', [HomeController::class, 'result'])->name('test.result');
 });
 
 // Login with FB & GG

@@ -35,6 +35,8 @@
     <div class="site-wrap">
         @include('home.common.header')
         @yield('section')
+        @yield('section-list-test')
+        @yield('section-lesson')
         @include('home.common.footer')
     </div>
     <script src="{{ asset('public/home/js/jquery-3.3.1.min.js') }}"></script>

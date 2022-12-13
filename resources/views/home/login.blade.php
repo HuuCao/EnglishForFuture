@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Academics &mdash; Website by Colorlib</title>
+    <title>Academics &mdash; EnglishForFuture</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -63,7 +63,7 @@
       <div class="container">
         <div class="d-flex align-items-center">
           <div class="site-logo">
-            <a href="" class="d-block">
+            <a href="{{ asset('home') }}" class="d-block">
               <img src="{{asset('public/home/images/logo.png')}}" alt="Image" class="img-fluid">
             </a>
           </div>
@@ -161,7 +161,7 @@
                             <input type="submit" value="Log In" class="btn btn-primary btn-lg px-5">
                         </div>
                     </div>
-                    <div class="row m-4">
+                    {{-- <div class="row m-4">
                       <div class="col-md-12 form-group">
                         <a href="{{url('/login/facebook')}}" class="form-control form-control-lg d-flex justify-content-center" style="background-color: #3B5998; color: white;">
                           <div><span class="icon-facebook"> </span></div>
@@ -172,7 +172,7 @@
                           <div><span class="icon-google"></span></div>
                         </a>
                       </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
           </form>

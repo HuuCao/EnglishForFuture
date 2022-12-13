@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Question;
 use App\Models\User;
+use App\Models\Exam;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
@@ -12,7 +14,7 @@ class HomeController extends Controller
 {
     public function getHome()
     {
-        $course = DB::table('tbl_course')->get();
+        $course = Course::with('lessons')->get();
         return view('home.index', compact('course'));
     }
 
@@ -115,8 +117,25 @@ class HomeController extends Controller
 
     public function course()
     {
-        $course = DB::table('tbl_course')->get();
+        $course = Course::with('lessons')->get();
+        // return $course;
         return view('home.course', compact('course'));
+    }
+
+    public function listTest()
+    {
+        $exam = Exam::with('questions')->get();
+        return view('home.common.list-test', compact('exam'));
+    }
+
+    public function listLesson()
+    {
+        $lessons = Course::with('lessons')->get();
+        // foreach ($lessons as $lesson)
+        // {
+        //     return $lesson->lessons;
+        // }
+        return view('home.common.lesson', compact('lessons'));
     }
 
     public function detailTest($id)
@@ -151,6 +170,7 @@ class HomeController extends Controller
             'listQuestionP7_5' => $listQuestionP7_5,
         ]);
     }
+
     public function result(Request $request)
     {
         $correctListen = 0;
@@ -158,8 +178,6 @@ class HomeController extends Controller
         $answer = collect($request->answer);
         foreach ($answer as $key => $value) {
             // echo $key;
-            // $this->questionRepo->getCorrectAnswerExamID($key)->number_for_exam >= 100;
-            // dd(Question::where('id', 1)->first());
             if (Question::where('id', $key)->where('number_for_exam', ">", 100)->first()) {
                 if (Question::where('id', $key)->first()->correct_answer == $value) {
                     $correctReading++;
@@ -178,8 +196,17 @@ class HomeController extends Controller
             '0', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '10', '15', '20', '25', '30', '35', '40', '45', '50', '60', '65', '70', '80', '85', '90', '95', '100', '110', '115', '120', '125', '130', '140', '145', '150', '160', '165', '170', '175', '180', '190', '195', '200', '210', '215', '220', '225', '230', '235', '240', '250', '255', '260', '265', '270', '280', '285', '290', '300', '305', '310', '320', '325', '330', '335', '340', '350', '355', '360', '365', '370', '380', '385', '390', '395', '400', '405', '410', '415', '420', '425', '430', '435', '445', '450', '455', '465', '470', '480', '485', '490', '495', '495', '495', '495'
         ];
 
-        $totalScore = [$scoreListening[($correctListen)], $scoreReading[($correctReading)]];
+        $markListening = $scoreListening[$correctListen];
+        $markReading = $scoreReading[$correctReading];
 
-        return $totalScore;
+        $this->resultRepo->saveResult([$correctListen, $correctReading, $markListening + $markReading, Session::get('id'), $request->id]);
+
+        return response([
+            'message' => "Congratulations",
+            'correct_answer' => $correctListen + $correctReading,
+            'listening' => $scoreListening[($correctListen)],
+            'reading' => $scoreReading[($correctReading)],
+            'total' => $markListening + $markReading,
+        ]);
     }
 }

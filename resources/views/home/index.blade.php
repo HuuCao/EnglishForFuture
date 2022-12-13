@@ -94,21 +94,23 @@
 
             <div class="row">
                 @foreach ($course as $c)
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="course-1-item">
-                            <figure class="thumnail">
-                                <a href="#"><img src="{{ $c->image }}" alt="Image" class="img-fluid"></a>
-                                <div class="category">
-                                    <h3>{{ $c->caption }}</h3>
+                    @foreach ($c->lessons as $lesson)
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="course-1-item">
+                                <figure class="thumnail">
+                                    <a href="http://localhost/EnglishForFuture/lesson/{{$lesson->id}}"><img src="{{ $c->image }}" alt="Image" class="img-fluid"></a>
+                                    <div class="category">
+                                        <h3>{{ $c->caption }}</h3>
+                                    </div>
+                                </figure>
+                                <div class="course-1-content pb-4">
+                                    <h2>{{ $c->title }}</h2>
+                                    <p class="desc mb-4">{{ $c->description }}</p>
+                                    <p><a href="http://localhost/EnglishForFuture/lesson/{{$lesson->id}}" class="btn btn-primary rounded-0 px-4">Xem bài giảng</a></p>
                                 </div>
-                            </figure>
-                            <div class="course-1-content pb-4">
-                                <h2>{{ $c->title }}</h2>
-                                <p class="desc mb-4">{{ $c->description }}</p>
-                                <p><a href="#" class="btn btn-primary rounded-0 px-4">Xem bài giảng</a></p>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 @endforeach
             </div>
 

@@ -16,15 +16,18 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
-    public function __construct() {
-        if (Session::get('role') == null)
-        {
-            return view('home.login');
-        }
-    }
+    // public function __construct() {
+    //     if (Session::get('role') == null)
+    //     {
+    //         return view('home.login');
+    //     }
+    // }
     public function admin()
     {
-       
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
         return view('admin.admin');
     }
     // ==================================== //
@@ -32,7 +35,10 @@ class AdminController extends Controller
     // ==================================== //
     public function getAllUser()
     {
-       
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
 
         $data_user=User::with('courses')->where('is_active', 1)->get();
         Session::put('soluong',count(($data_user)));
@@ -41,7 +47,10 @@ class AdminController extends Controller
 
     public function addUser()
     {
-       
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
         return view("admin.users.add");
     }
     
@@ -86,10 +95,13 @@ class AdminController extends Controller
 
     public function editUser($id)
     {
-       
-            $data_user=User::find($id);
-            // dd($data_user);
-            return view('admin.users.edit',compact('data_user'));
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
+        $data_user=User::find($id);
+        // dd($data_user);
+        return view('admin.users.edit',compact('data_user'));
     }
 
     public function postEditUser(Request $request, $id)
@@ -152,7 +164,10 @@ class AdminController extends Controller
 
     public function getAllCourse()
     {
-       
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
 
         $data_course=Course::with('lessons')->where('is_active', 1)->get();
         Session::put('soluong',count(($data_course)));
@@ -161,7 +176,10 @@ class AdminController extends Controller
 
     public function addCourse()
     {
-       
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
         return view("admin.courses.add");
     }
     
@@ -188,7 +206,7 @@ class AdminController extends Controller
             $day = date("Y-m-d");
             $file_custom = $day . "_" . $file;
             $file_custom =
-                "https://englishforfutute.herokuapp.com/upload/" . $day . "_" . $file;
+                "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
             $course->image = $file_custom;
             $request->image->move("upload/", $file_custom);
         }
@@ -199,10 +217,13 @@ class AdminController extends Controller
 
     public function editCourse($id)
     {
-       
-            $data_course=Course::find($id);
-            // dd($data_user);
-            return view('admin.courses.edit',compact('data_course'));
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
+        $data_course=Course::find($id);
+        // dd($data_user);
+        return view('admin.courses.edit',compact('data_course'));
     }
 
     public function postEditCourse(Request $request, $id)
@@ -234,7 +255,7 @@ class AdminController extends Controller
                 $day = date("Y-m-d");
                 $file_custom = $day . "_" . $file;
                 $file_custom =
-                    "https://englishforfutute.herokuapp.com/upload/" . $day . "_" . $file;
+                    "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
                 $course->image = $file_custom;
                 $request->image->move("upload/", $file_custom);
             }
@@ -255,7 +276,10 @@ class AdminController extends Controller
 
     public function deleteCourse(Request $request, $id)
     {
-       
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
         $data_course=Course::find($id);
         $data_course->is_active = 0;
         $data_course->save();
@@ -268,7 +292,10 @@ class AdminController extends Controller
 
     public function getAllLesson()
     {
-       
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
 
         $data_lesson=Lesson::where('is_active', 1)->get();
         Session::put('soluong',count(($data_lesson)));
@@ -277,7 +304,10 @@ class AdminController extends Controller
 
     public function addLesson()
     {
-       
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
         return view("admin.lessons.add");
     }
     
@@ -297,7 +327,7 @@ class AdminController extends Controller
             $day = date("Y-m-d");
             $file_custom = $day . "_" . $file;
             $file_custom =
-                "https://englishforfutute.herokuapp.com/upload/" . $day . "_" . $file;
+                "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
             $lesson->image = $file_custom;
             $request->image->move("upload/", $file_custom);
         }
@@ -308,10 +338,13 @@ class AdminController extends Controller
 
     public function editLesson($id)
     {
-       
-            $data_lesson=Lesson::find($id);
-            // dd($data_user);
-            return view('admin.lessons.edit',compact('data_lesson'));
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
+        $data_lesson=Lesson::find($id);
+        // dd($data_user);
+        return view('admin.lessons.edit',compact('data_lesson'));
     }
 
     public function postEditLesson(Request $request, $id)
@@ -333,7 +366,7 @@ class AdminController extends Controller
                 $day = date("Y-m-d");
                 $file_custom = $day . "_" . $file;
                 $file_custom =
-                    "https://englishforfutute.herokuapp.com/upload/" . $day . "_" . $file;
+                    "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
                 $lesson->image = $file_custom;
                 $request->image->move("upload/", $file_custom);
             }
@@ -350,7 +383,10 @@ class AdminController extends Controller
 
     public function deleteLesson(Request $request, $id)
     {
-       
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
         $data_lesson=Lesson::find($id);
         $data_lesson->is_active = 0;
         $data_lesson->save();
@@ -363,7 +399,10 @@ class AdminController extends Controller
 
     public function getAllBlog()
     {
-       
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
 
         $data_blog=Blog::where('is_active', 1)->get();
         Session::put('soluong',count(($data_blog)));
@@ -372,7 +411,10 @@ class AdminController extends Controller
 
     public function addBlog()
     {
-       
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
         return view("admin.blogs.add");
     }
     
@@ -392,7 +434,7 @@ class AdminController extends Controller
             $day = date("Y-m-d");
             $file_custom = $day . "_" . $file;
             $file_custom =
-                "https://englishforfutute.herokuapp.com/upload/" . $day . "_" . $file;
+                "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
             $blog->image = $file_custom;
             $request->image->move("upload/", $file_custom);
         }
@@ -403,10 +445,13 @@ class AdminController extends Controller
 
     public function editBlog($id)
     {
-       
-            $data_blog=Blog::find($id);
-            // dd($data_user);
-            return view('admin.blogs.edit',compact('data_blog'));
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
+        $data_blog=Blog::find($id);
+        // dd($data_user);
+        return view('admin.blogs.edit',compact('data_blog'));
     }
 
     public function postEditBlog(Request $request, $id)
@@ -430,7 +475,7 @@ class AdminController extends Controller
                 $day = date("Y-m-d");
                 $file_custom = $day . "_" . $file;
                 $file_custom =
-                    "https://englishforfutute.herokuapp.com/upload/" . $day . "_" . $file;
+                    "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
                 $blog->image = $file_custom;
                 $request->image->move("upload/", $file_custom);
             }
@@ -472,7 +517,10 @@ class AdminController extends Controller
 
     public function getAllExam()
     {
-       
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
 
         $data_exam=Exam::with('users')->with('lessons')->with('questions')->where('is_active', 1)->get();
         Session::put('soluong',count(($data_exam)));
@@ -481,6 +529,10 @@ class AdminController extends Controller
 
     public function addExam()
     {
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
        
         $data_lesson=DB::table('tbl_lesson')->where('status',1)->get();
         return view("admin.exams.add", compact('data_lesson'));
@@ -505,7 +557,10 @@ class AdminController extends Controller
 
     public function editExam($id)
     {
-       
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
         $data_exam=Exam::find($id);
         return view('admin.exams.edit',compact('data_exam'));
     }
@@ -529,7 +584,7 @@ class AdminController extends Controller
                 $day = date("Y-m-d");
                 $file_custom = $day . "_" . $file;
                 $file_custom =
-                    "https://englishforfutute.herokuapp.com/upload/" . $day . "_" . $file;
+                    "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
                 $lesson->image = $file_custom;
                 $request->image->move("upload/", $file_custom);
             }
@@ -560,6 +615,10 @@ class AdminController extends Controller
 
     public function getAllQuestion()
     {
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
         $data_question=Question::paginate(10);
         Session::put('soluong',count(($data_question)));
         return view('admin.questions.question', compact('data_question'));
@@ -567,7 +626,10 @@ class AdminController extends Controller
 
     public function addQuestion()
     {
-       
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
         return view("admin.questions.add");
     }
     
@@ -605,10 +667,13 @@ class AdminController extends Controller
 
     public function editQuestion($id)
     {
-       
-            $data_lesson=Question::find($id);
-            // dd($data_user);
-            return view('admin.lessons.edit',compact('data_lesson'));
+        if (Session::get('role') == null)
+        {
+            return redirect('login');
+        }
+        $data_lesson=Question::find($id);
+        // dd($data_user);
+        return view('admin.lessons.edit',compact('data_lesson'));
     }
 
     public function postEditQuestion(Request $request, $id)
@@ -629,7 +694,7 @@ class AdminController extends Controller
                 $day = date("Y-m-d");
                 $file_custom = $day . "_" . $file;
                 $file_custom =
-                    "https://englishforfutute.herokuapp.com/upload/" . $day . "_" . $file;
+                    "http://localhost/EnglishForFuture/upload/" . $day . "_" . $file;
                 $lesson->image = $file_custom;
                 $request->image->move("upload/", $file_custom);
             }

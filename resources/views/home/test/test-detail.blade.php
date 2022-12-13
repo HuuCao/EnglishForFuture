@@ -54,6 +54,57 @@
                 </div>
             </form>
         </div>
+        <div class="modal fade" id="result-modal" tabindex="-1" aria-labelledby="msg" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="msg">Modal title</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-4">
+                                <b>
+                                    Listening :
+                                </b>
+                            </div>
+                            <div class="col-6 text-center" style="width: 80px;background-color: #EEEEEE" id="scoreListening">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-4">
+                                <b>
+                                    Reading :
+                                </b>
+                            </div>
+                            <div class="col-6 text-center" style="width: 80px;background-color: #EEEEEE" id="scoreReading">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-4">
+                                <b>
+                                    Correct Answer :
+                                </b>
+                            </div>
+                            <div class="col-6 text-center" style="width: 80px;background-color: #EEEEEE" id="correctAnswer">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-4">
+                                <b>
+                                    Your Score :
+                                </b>
+                            </div>
+                            <div class="col-6 text-center" style="width: 80px;background-color: #EEEEEE" id="yourScore">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 @endsection
@@ -99,9 +150,9 @@
 
         $(document).ready(function() {
             fulltest_change_page(1);
-            var hours = 00;
+            var hours = 02;
             var minutes = 00;
-            var seconds = 05;
+            var seconds = 00;
             var timeLeft = setInterval(() => {
 
                 if (hours == 0 && minutes == 0 && seconds == 0) {
@@ -160,6 +211,63 @@
                 }
             });
 
+        });
+
+        $(document).ready(function() {
+            $("#submitForm").on('submit', function(e) {
+                // clearInterval(timeLeft);
+                // e.preventDefault();
+                // $(this).remove()
+                // var formData = new FormData(this);
+                // $.ajax({
+                //     url: "{{ route('test.result') }}",
+                //     type: 'POST',
+                //     data: formData,
+                //     cache: false,
+                //     contentType: false,
+                //     processData: false,
+                //     success: function(data) {
+                //         $("#msg").html(data.message);
+                //         $("#scoreListening").html(data.listening);
+                //         $("#scoreReading").html(data.reading);
+                //         $("#correctAnswer").html(data.correct_answer + "/" + "200");
+                //         $("#yourScore").html(data.total);
+                //         const myModalEl = document.getElementById('result-modal');
+                //         const modal = new mdb.Modal(myModalEl);
+                //         modal.show();
+                //     },
+                //     error: function(response) {
+                //         alert(response.status);
+                //     }
+                // });
+            });
+            var hours = 02;
+            var minutes = 00;
+            var seconds = 00;
+            var timeLeft = setInterval(() => {
+
+                if (hours == 0 && minutes == 0 && seconds == 0) {
+                    clearInterval(timeLeft);
+                    $("#submitForm").submit();
+                }
+
+                if (seconds <= 0) {
+                    minutes--;
+                    seconds = 59;
+                }
+                if (minutes <= 0 && hours != 0) {
+                    hours--;
+                    minutes = 59;
+                    seconds = 59;
+                }
+
+                let tmpHours = hours.toString().length > 1 ? hours : '0' + hours;
+                let tmpMinutes = minutes.toString().length > 1 ? minutes : '0' + minutes;
+                let tmpSeconds = seconds.toString().length > 1 ? seconds : '0' + seconds;
+
+                $("#time").text(tmpHours + ':' + tmpMinutes + ':' + tmpSeconds + "s");
+                seconds--;
+            }, 1000);
         });
     </script>
 @stop
