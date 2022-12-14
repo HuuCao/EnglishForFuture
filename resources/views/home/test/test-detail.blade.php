@@ -9,32 +9,32 @@
 
 @section('content')
     <div class="testReading" id="testReading">
-        <div class="navbar fixed-top navbar-light bg-light">
-            <p>
-                {{-- <a href="{{ route('home') }}" id="backhome" style="display: inline;">← --}}
-                {{-- Home</a> --}}
-                {{-- <span style="padding-left: 40px;">{{ $infoExam }}</span> --}}
-            </p>
-        </div>
         <div id="content" class="container-fluid fill">
             <form action="{{ route('test.result', ['id' => $id]) }}" id="submitForm" name="submitForm" method="POST">
                 @csrf
                 <input type="hidden" name="id" value="{{ $id }}">
                 <div class="row">
-                    <div id="navigation" class="col-md-3">
+                    <!--Nội dung bài test -->
+                    <div id="main" class="col-md-9 web-font " style="background-color: beige">
+                        {{-- @include('home.test.list-parts') --}}
+                        <div class="container" id="fulltest_content">
+                            @include('home.test.details-question')
+                        </div>
+                    </div>
+                    <div id="navigation  d-flex" class="col-md-3">
                         <div class="fix-scrolling">
                             <div class="d-flex justify-content-center pt-3">
-                                <span id="time">2:00:00</span>
+                                <span id="time" style="color: red">2:00:00</span>
                             </div>
                             <hr class="hr hr-blurry">
-                            <div class="d-flex justify-content-start flex-wrap overflow-scroll" id="list-question">
+                            <div class="d-flex justify-content-start flex-wrap overflow-scroll" id="list-question" style="background-color: aquamarine">
                                 @include('home.test.list-question')
                             </div>
                             <hr class="hr hr-blurry">
                             <div class="pageing" id="fulltest_page" data-page="1" data-limit="102">
                                 <a href="javascript:void(0)" data-type="-1" class="button_page back">BACK</a>
                                 <a href="javascript:void(0)" class="button_page next" data-type="1">NEXT</a>
-                                <button class="btn btn-danger">Chấm điểm</button>
+                                <button class="btn btn-warning" >Chấm điểm</button>
                                 {{-- onclick="if (!window.__cfRLUnblockHandlers) return false; return mshoatoeic.send_answer_fulltest()"
                                 data-cf-modified-1ce80f210daa0304f7c52798-="" --}}
                             </div>
@@ -44,13 +44,7 @@
                     <div class="col-md-3 ">
                     </div>
 
-                    <!--Nội dung bài test -->
-                    <div id="main" class="col-md-9 web-font ">
-                        @include('home.test.list-parts')
-                        <div class="container" id="fulltest_content">
-                            @include('home.test.details-question')
-                        </div>
-                    </div>
+                    
                 </div>
             </form>
         </div>

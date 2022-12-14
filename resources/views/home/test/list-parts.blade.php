@@ -1,4 +1,4 @@
-<ul class="nav nav-pills nav-fill" id="fulltest_part_head" style="cursor: pointer;">
+{{-- <ul class="nav nav-pills nav-fill" id="fulltest_part_head" style="cursor: pointer;">
     <li class="nav-item fulltest_part" data-part="1">
         <a class="nav-link active" aria-current="page">Part 1</a>
     </li>
@@ -20,4 +20,4 @@
     <li class="nav-item fulltest_part" data-part="7">
         <a class="nav-link">Part 7</a>
     </li>
-</ul>
+</ul> --}}
